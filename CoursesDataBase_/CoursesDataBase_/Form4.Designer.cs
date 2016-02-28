@@ -196,14 +196,14 @@
             this.toolStripSeparator2,
             this.toolStripLabel2,
             this.toolStripButton3});
-            this.teachersBindingNavigator.Location = new System.Drawing.Point(255, 16);
+            this.teachersBindingNavigator.Location = new System.Drawing.Point(239, 16);
             this.teachersBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.teachersBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.teachersBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.teachersBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.teachersBindingNavigator.Name = "teachersBindingNavigator";
             this.teachersBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.teachersBindingNavigator.Size = new System.Drawing.Size(456, 25);
+            this.teachersBindingNavigator.Size = new System.Drawing.Size(487, 25);
             this.teachersBindingNavigator.TabIndex = 0;
             this.teachersBindingNavigator.Text = "bindingNavigator1";
             // 

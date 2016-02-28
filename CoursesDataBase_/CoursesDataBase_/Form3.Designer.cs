@@ -404,7 +404,7 @@
             this.passportToolStripLabel,
             this.passportToolStripTextBox,
             this.searchingStudentsToolStripButton});
-            this.searchingStudentsToolStrip.Location = new System.Drawing.Point(47, 58);
+            this.searchingStudentsToolStrip.Location = new System.Drawing.Point(61, 58);
             this.searchingStudentsToolStrip.Name = "searchingStudentsToolStrip";
             this.searchingStudentsToolStrip.Size = new System.Drawing.Size(678, 25);
             this.searchingStudentsToolStrip.TabIndex = 14;
