@@ -37,8 +37,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             this.studentsBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.studentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new CoursesDataBase_.DataSet1();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -58,11 +56,6 @@
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.studentsDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idStudentTextBox = new System.Windows.Forms.TextBox();
             this.fullNameRichTextBox = new System.Windows.Forms.RichTextBox();
             this.passportTextBox = new System.Windows.Forms.TextBox();
@@ -76,14 +69,23 @@
             this.passportToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.passportToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.searchingStudentsToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.studentsTableAdapter = new CoursesDataBase_.DataSet1TableAdapters.StudentsTableAdapter();
-            this.tableAdapterManager = new CoursesDataBase_.DataSet1TableAdapters.TableAdapterManager();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.studentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSet1 = new CoursesDataBase_.DataSet1();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentsTableAdapter = new CoursesDataBase_.DataSet1TableAdapters.StudentsTableAdapter();
+            this.tableAdapterManager = new CoursesDataBase_.DataSet1TableAdapters.TableAdapterManager();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.coursesOfStudentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             idStudentLabel = new System.Windows.Forms.Label();
             fullNameLabel = new System.Windows.Forms.Label();
             passportLabel = new System.Windows.Forms.Label();
@@ -91,19 +93,20 @@
             homeAddressLabel1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.studentsBindingNavigator)).BeginInit();
             this.studentsBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentsDataGridView)).BeginInit();
             this.searchingStudentsToolStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // idStudentLabel
             // 
             idStudentLabel.AutoSize = true;
             idStudentLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            idStudentLabel.Location = new System.Drawing.Point(9, 13);
+            idStudentLabel.Location = new System.Drawing.Point(12, 36);
             idStudentLabel.Name = "idStudentLabel";
             idStudentLabel.Size = new System.Drawing.Size(75, 17);
             idStudentLabel.TabIndex = 2;
@@ -113,7 +116,7 @@
             // 
             fullNameLabel.AutoSize = true;
             fullNameLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            fullNameLabel.Location = new System.Drawing.Point(267, 13);
+            fullNameLabel.Location = new System.Drawing.Point(269, 36);
             fullNameLabel.Name = "fullNameLabel";
             fullNameLabel.Size = new System.Drawing.Size(75, 17);
             fullNameLabel.TabIndex = 4;
@@ -123,7 +126,7 @@
             // 
             passportLabel.AutoSize = true;
             passportLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            passportLabel.Location = new System.Drawing.Point(9, 67);
+            passportLabel.Location = new System.Drawing.Point(9, 80);
             passportLabel.Name = "passportLabel";
             passportLabel.Size = new System.Drawing.Size(68, 17);
             passportLabel.TabIndex = 6;
@@ -133,7 +136,7 @@
             // 
             phoneNumberLabel.AutoSize = true;
             phoneNumberLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            phoneNumberLabel.Location = new System.Drawing.Point(504, 69);
+            phoneNumberLabel.Location = new System.Drawing.Point(504, 82);
             phoneNumberLabel.Name = "phoneNumberLabel";
             phoneNumberLabel.Size = new System.Drawing.Size(104, 17);
             phoneNumberLabel.TabIndex = 10;
@@ -142,7 +145,7 @@
             // homeAddressLabel1
             // 
             homeAddressLabel1.AutoSize = true;
-            homeAddressLabel1.Location = new System.Drawing.Point(504, 13);
+            homeAddressLabel1.Location = new System.Drawing.Point(504, 36);
             homeAddressLabel1.Name = "homeAddressLabel1";
             homeAddressLabel1.Size = new System.Drawing.Size(101, 17);
             homeAddressLabel1.TabIndex = 12;
@@ -175,7 +178,7 @@
             this.toolStripSeparator2,
             this.toolStripLabel2,
             this.toolStripButton3});
-            this.studentsBindingNavigator.Location = new System.Drawing.Point(161, 21);
+            this.studentsBindingNavigator.Location = new System.Drawing.Point(141, 27);
             this.studentsBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.studentsBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.studentsBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -194,16 +197,6 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // studentsBindingSource
-            // 
-            this.studentsBindingSource.DataMember = "Students";
-            this.studentsBindingSource.DataSource = this.dataSet1;
-            // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "DataSet1";
-            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bindingNavigatorCountItem
             // 
@@ -355,54 +348,16 @@
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
             this.studentsDataGridView.DataSource = this.studentsBindingSource;
-            this.studentsDataGridView.Location = new System.Drawing.Point(12, 198);
+            this.studentsDataGridView.Location = new System.Drawing.Point(12, 211);
             this.studentsDataGridView.Name = "studentsDataGridView";
             this.studentsDataGridView.ReadOnly = true;
             this.studentsDataGridView.Size = new System.Drawing.Size(782, 270);
             this.studentsDataGridView.TabIndex = 1;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "IdStudent";
-            this.dataGridViewTextBoxColumn1.HeaderText = "IdStudent";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "FullName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "FullName";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 215;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Passport";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Passport";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "HomeAddress";
-            this.dataGridViewTextBoxColumn4.HeaderText = "HomeAddress";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "PhoneNumber";
-            this.dataGridViewTextBoxColumn5.HeaderText = "PhoneNumber";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 120;
-            // 
             // idStudentTextBox
             // 
             this.idStudentTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.studentsBindingSource, "IdStudent", true));
-            this.idStudentTextBox.Location = new System.Drawing.Point(90, 10);
+            this.idStudentTextBox.Location = new System.Drawing.Point(90, 33);
             this.idStudentTextBox.Name = "idStudentTextBox";
             this.idStudentTextBox.Size = new System.Drawing.Size(138, 25);
             this.idStudentTextBox.TabIndex = 3;
@@ -410,7 +365,7 @@
             // fullNameRichTextBox
             // 
             this.fullNameRichTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.studentsBindingSource, "FullName", true));
-            this.fullNameRichTextBox.Location = new System.Drawing.Point(350, 10);
+            this.fullNameRichTextBox.Location = new System.Drawing.Point(350, 33);
             this.fullNameRichTextBox.Name = "fullNameRichTextBox";
             this.fullNameRichTextBox.Size = new System.Drawing.Size(132, 49);
             this.fullNameRichTextBox.TabIndex = 5;
@@ -419,7 +374,7 @@
             // passportTextBox
             // 
             this.passportTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.studentsBindingSource, "Passport", true));
-            this.passportTextBox.Location = new System.Drawing.Point(90, 61);
+            this.passportTextBox.Location = new System.Drawing.Point(90, 74);
             this.passportTextBox.Name = "passportTextBox";
             this.passportTextBox.Size = new System.Drawing.Size(138, 25);
             this.passportTextBox.TabIndex = 7;
@@ -427,7 +382,7 @@
             // phoneNumberTextBox
             // 
             this.phoneNumberTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.studentsBindingSource, "PhoneNumber", true));
-            this.phoneNumberTextBox.Location = new System.Drawing.Point(612, 64);
+            this.phoneNumberTextBox.Location = new System.Drawing.Point(612, 77);
             this.phoneNumberTextBox.Name = "phoneNumberTextBox";
             this.phoneNumberTextBox.Size = new System.Drawing.Size(182, 25);
             this.phoneNumberTextBox.TabIndex = 11;
@@ -435,9 +390,9 @@
             // homeAddressRichTextBox
             // 
             this.homeAddressRichTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.studentsBindingSource, "HomeAddress", true));
-            this.homeAddressRichTextBox.Location = new System.Drawing.Point(612, 10);
+            this.homeAddressRichTextBox.Location = new System.Drawing.Point(612, 27);
             this.homeAddressRichTextBox.Name = "homeAddressRichTextBox";
-            this.homeAddressRichTextBox.Size = new System.Drawing.Size(182, 49);
+            this.homeAddressRichTextBox.Size = new System.Drawing.Size(182, 45);
             this.homeAddressRichTextBox.TabIndex = 13;
             this.homeAddressRichTextBox.Text = "";
             // 
@@ -452,9 +407,9 @@
             this.passportToolStripLabel,
             this.passportToolStripTextBox,
             this.searchingStudentsToolStripButton});
-            this.searchingStudentsToolStrip.Location = new System.Drawing.Point(61, 58);
+            this.searchingStudentsToolStrip.Location = new System.Drawing.Point(78, 66);
             this.searchingStudentsToolStrip.Name = "searchingStudentsToolStrip";
-            this.searchingStudentsToolStrip.Size = new System.Drawing.Size(675, 25);
+            this.searchingStudentsToolStrip.Size = new System.Drawing.Size(644, 25);
             this.searchingStudentsToolStrip.TabIndex = 14;
             this.searchingStudentsToolStrip.Text = "searchingStudentsToolStrip";
             // 
@@ -499,25 +454,11 @@
             this.searchingStudentsToolStripButton.Text = "&Search";
             this.searchingStudentsToolStripButton.Click += new System.EventHandler(this.searchingStudentsToolStripButton_Click);
             // 
-            // studentsTableAdapter
-            // 
-            this.studentsTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CoursesTableAdapter = null;
-            this.tableAdapterManager.ListOfStudyingTableAdapter = null;
-            this.tableAdapterManager.sqlite_sequenceTableAdapter = null;
-            this.tableAdapterManager.StudentsTableAdapter = this.studentsTableAdapter;
-            this.tableAdapterManager.TeachersTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = CoursesDataBase_.DataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.studentsBindingNavigator);
             this.groupBox1.Controls.Add(this.searchingStudentsToolStrip);
-            this.groupBox1.Location = new System.Drawing.Point(12, 92);
+            this.groupBox1.Location = new System.Drawing.Point(12, 105);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(782, 100);
             this.groupBox1.TabIndex = 15;
@@ -530,7 +471,7 @@
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel3});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 471);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 483);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(802, 22);
             this.statusStrip1.TabIndex = 16;
@@ -558,12 +499,94 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // studentsBindingSource
+            // 
+            this.studentsBindingSource.DataMember = "Students";
+            this.studentsBindingSource.DataSource = this.dataSet1;
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "DataSet1";
+            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "IdStudent";
+            this.dataGridViewTextBoxColumn1.HeaderText = "IdStudent";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "FullName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "FullName";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 215;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Passport";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Passport";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "HomeAddress";
+            this.dataGridViewTextBoxColumn4.HeaderText = "HomeAddress";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "PhoneNumber";
+            this.dataGridViewTextBoxColumn5.HeaderText = "PhoneNumber";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 120;
+            // 
+            // studentsTableAdapter
+            // 
+            this.studentsTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CoursesShortTableAdapter = null;
+            this.tableAdapterManager.CoursesTableAdapter = null;
+            this.tableAdapterManager.ListOfStudyingTableAdapter = null;
+            this.tableAdapterManager.sqlite_sequenceTableAdapter = null;
+            this.tableAdapterManager.StudentsShortTableAdapter = null;
+            this.tableAdapterManager.StudentsTableAdapter = this.studentsTableAdapter;
+            this.tableAdapterManager.TeachersTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = CoursesDataBase_.DataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.coursesOfStudentsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(802, 24);
+            this.menuStrip1.TabIndex = 17;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // coursesOfStudentsToolStripMenuItem
+            // 
+            this.coursesOfStudentsToolStripMenuItem.Name = "coursesOfStudentsToolStripMenuItem";
+            this.coursesOfStudentsToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
+            this.coursesOfStudentsToolStripMenuItem.Text = "&Courses of students";
+            this.coursesOfStudentsToolStripMenuItem.Click += new System.EventHandler(this.coursesOfStudentsToolStripMenuItem_Click);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 493);
+            this.ClientSize = new System.Drawing.Size(802, 505);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(homeAddressLabel1);
             this.Controls.Add(this.homeAddressRichTextBox);
@@ -578,6 +601,7 @@
             this.Controls.Add(this.studentsDataGridView);
             this.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form3";
             this.Text = "Students";
@@ -585,8 +609,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.studentsBindingNavigator)).EndInit();
             this.studentsBindingNavigator.ResumeLayout(false);
             this.studentsBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentsDataGridView)).EndInit();
             this.searchingStudentsToolStrip.ResumeLayout(false);
             this.searchingStudentsToolStrip.PerformLayout();
@@ -594,6 +616,10 @@
             this.groupBox1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -650,5 +676,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem coursesOfStudentsToolStripMenuItem;
     }
 }

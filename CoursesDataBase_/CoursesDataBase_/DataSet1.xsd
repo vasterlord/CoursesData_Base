@@ -555,6 +555,35 @@ WHERE        (Idlist LIKE :Idlist) OR
               </DbSource>
             </Sources>
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="StudQueryButtonTableAdapter" GeneratorDataComponentClassName="StudQueryButtonTableAdapter" Name="StudQueryButton" UserDataComponentName="StudQueryButtonTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Students.IdStudent, Students.FullName, Students.Passport, Students.HomeAddress, Students.PhoneNumber, ListOfStudying.Idlist, ListOfStudying.IdCourse, 
+                         Courses.CoursetTitle, Teachers.IdTeacher
+FROM            Students INNER JOIN
+                         ListOfStudying ON Students.IdStudent = ListOfStudying.IdStudent INNER JOIN
+                         Courses ON ListOfStudying.IdCourse = Courses.IdCourse INNER JOIN
+                         Teachers ON ListOfStudying.IdTeacher = Teachers.IdTeacher</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdStudent" DataSetColumn="IdStudent" />
+              <Mapping SourceColumn="FullName" DataSetColumn="FullName" />
+              <Mapping SourceColumn="Passport" DataSetColumn="Passport" />
+              <Mapping SourceColumn="HomeAddress" DataSetColumn="HomeAddress" />
+              <Mapping SourceColumn="PhoneNumber" DataSetColumn="PhoneNumber" />
+              <Mapping SourceColumn="Idlist" DataSetColumn="Idlist" />
+              <Mapping SourceColumn="IdCourse" DataSetColumn="IdCourse" />
+              <Mapping SourceColumn="CoursetTitle" DataSetColumn="CoursetTitle" />
+              <Mapping SourceColumn="IdTeacher" DataSetColumn="IdTeacher" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -649,6 +678,21 @@ WHERE        (Idlist LIKE :Idlist) OR
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="StudQueryButton" msprop:Generator_TableClassName="StudQueryButtonDataTable" msprop:Generator_TableVarName="tableStudQueryButton" msprop:Generator_TablePropName="StudQueryButton" msprop:Generator_RowDeletingName="StudQueryButtonRowDeleting" msprop:Generator_RowChangingName="StudQueryButtonRowChanging" msprop:Generator_RowEvHandlerName="StudQueryButtonRowChangeEventHandler" msprop:Generator_RowDeletedName="StudQueryButtonRowDeleted" msprop:Generator_UserTableName="StudQueryButton" msprop:Generator_RowChangedName="StudQueryButtonRowChanged" msprop:Generator_RowEvArgName="StudQueryButtonRowChangeEvent" msprop:Generator_RowClassName="StudQueryButtonRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdStudent" msprop:Generator_ColumnVarNameInTable="columnIdStudent" msprop:Generator_ColumnPropNameInRow="IdStudent" msprop:Generator_ColumnPropNameInTable="IdStudentColumn" msprop:Generator_UserColumnName="IdStudent" type="xs:string" />
+              <xs:element name="FullName" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" msprop:Generator_UserColumnName="FullName" type="xs:string" minOccurs="0" />
+              <xs:element name="Passport" msprop:Generator_ColumnVarNameInTable="columnPassport" msprop:Generator_ColumnPropNameInRow="Passport" msprop:Generator_ColumnPropNameInTable="PassportColumn" msprop:Generator_UserColumnName="Passport" type="xs:string" minOccurs="0" />
+              <xs:element name="HomeAddress" msprop:Generator_ColumnVarNameInTable="columnHomeAddress" msprop:Generator_ColumnPropNameInRow="HomeAddress" msprop:Generator_ColumnPropNameInTable="HomeAddressColumn" msprop:Generator_UserColumnName="HomeAddress" type="xs:string" minOccurs="0" />
+              <xs:element name="PhoneNumber" msprop:Generator_ColumnVarNameInTable="columnPhoneNumber" msprop:Generator_ColumnPropNameInRow="PhoneNumber" msprop:Generator_ColumnPropNameInTable="PhoneNumberColumn" msprop:Generator_UserColumnName="PhoneNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="Idlist" msprop:Generator_ColumnVarNameInTable="columnIdlist" msprop:Generator_ColumnPropNameInRow="Idlist" msprop:Generator_ColumnPropNameInTable="IdlistColumn" msprop:Generator_UserColumnName="Idlist" type="xs:string" />
+              <xs:element name="IdCourse" msprop:Generator_ColumnVarNameInTable="columnIdCourse" msprop:Generator_ColumnPropNameInRow="IdCourse" msprop:Generator_ColumnPropNameInTable="IdCourseColumn" msprop:Generator_UserColumnName="IdCourse" type="xs:string" />
+              <xs:element name="CoursetTitle" msprop:Generator_ColumnVarNameInTable="columnCoursetTitle" msprop:Generator_ColumnPropNameInRow="CoursetTitle" msprop:Generator_ColumnPropNameInTable="CoursetTitleColumn" msprop:Generator_UserColumnName="CoursetTitle" type="xs:string" minOccurs="0" />
+              <xs:element name="IdTeacher" msprop:Generator_ColumnVarNameInTable="columnIdTeacher" msprop:Generator_ColumnPropNameInRow="IdTeacher" msprop:Generator_ColumnPropNameInTable="IdTeacherColumn" msprop:Generator_UserColumnName="IdTeacher" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -678,6 +722,12 @@ WHERE        (Idlist LIKE :Idlist) OR
     <xs:unique name="ListOfStudying_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:ListOfStudying" />
       <xs:field xpath="mstns:Idlist" />
+    </xs:unique>
+    <xs:unique name="StudQueryButton_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:StudQueryButton" />
+      <xs:field xpath="mstns:IdStudent" />
+      <xs:field xpath="mstns:Idlist" />
+      <xs:field xpath="mstns:IdTeacher" />
     </xs:unique>
   </xs:element>
   <xs:annotation>

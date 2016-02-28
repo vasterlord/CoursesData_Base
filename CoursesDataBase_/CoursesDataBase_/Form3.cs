@@ -91,5 +91,16 @@ namespace CoursesDataBase_
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void coursesOfStudentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form FormNameStudyingCourse = new Form7();
+            FormNameStudyingCourse.ShowDialog();
+        }
     }
 }
