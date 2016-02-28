@@ -34,6 +34,14 @@ namespace CoursesDataBase_ {
         
         private TeachersDataTable tableTeachers;
         
+        private global::System.Data.DataRelation relationTeachers_Courses;
+        
+        private global::System.Data.DataRelation relationTeachers_ListOfStudying;
+        
+        private global::System.Data.DataRelation relationCourses_ListOfStudying;
+        
+        private global::System.Data.DataRelation relationStudents_ListOfStudying;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -290,6 +298,10 @@ namespace CoursesDataBase_ {
                     this.tableTeachers.InitVars();
                 }
             }
+            this.relationTeachers_Courses = this.Relations["Teachers_Courses"];
+            this.relationTeachers_ListOfStudying = this.Relations["Teachers_ListOfStudying"];
+            this.relationCourses_ListOfStudying = this.Relations["Courses_ListOfStudying"];
+            this.relationStudents_ListOfStudying = this.Relations["Students_ListOfStudying"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -310,6 +322,22 @@ namespace CoursesDataBase_ {
             base.Tables.Add(this.tableStudents);
             this.tableTeachers = new TeachersDataTable();
             base.Tables.Add(this.tableTeachers);
+            this.relationTeachers_Courses = new global::System.Data.DataRelation("Teachers_Courses", new global::System.Data.DataColumn[] {
+                        this.tableTeachers.IdTeacherColumn}, new global::System.Data.DataColumn[] {
+                        this.tableCourses.IdTeacherColumn}, false);
+            this.Relations.Add(this.relationTeachers_Courses);
+            this.relationTeachers_ListOfStudying = new global::System.Data.DataRelation("Teachers_ListOfStudying", new global::System.Data.DataColumn[] {
+                        this.tableTeachers.IdTeacherColumn}, new global::System.Data.DataColumn[] {
+                        this.tableListOfStudying.IdTeacherColumn}, false);
+            this.Relations.Add(this.relationTeachers_ListOfStudying);
+            this.relationCourses_ListOfStudying = new global::System.Data.DataRelation("Courses_ListOfStudying", new global::System.Data.DataColumn[] {
+                        this.tableCourses.IdCourseColumn}, new global::System.Data.DataColumn[] {
+                        this.tableListOfStudying.IdCourseColumn}, false);
+            this.Relations.Add(this.relationCourses_ListOfStudying);
+            this.relationStudents_ListOfStudying = new global::System.Data.DataRelation("Students_ListOfStudying", new global::System.Data.DataColumn[] {
+                        this.tableStudents.IdStudentColumn}, new global::System.Data.DataColumn[] {
+                        this.tableListOfStudying.IdStudentColumn}, false);
+            this.Relations.Add(this.relationStudents_ListOfStudying);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -431,6 +459,8 @@ namespace CoursesDataBase_ {
             
             private global::System.Data.DataColumn columnCourseFee;
             
+            private global::System.Data.DataColumn columnIdTeacher;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CoursesDataTable() {
@@ -514,6 +544,14 @@ namespace CoursesDataBase_ {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IdTeacherColumn {
+                get {
+                    return this.columnIdTeacher;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -549,7 +587,7 @@ namespace CoursesDataBase_ {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CoursesRow AddCoursesRow(string IdCourse, string CoursetTitle, string Timetable, string Duration, string DuringOneLesson, long CourseFee) {
+            public CoursesRow AddCoursesRow(string IdCourse, string CoursetTitle, string Timetable, string Duration, string DuringOneLesson, long CourseFee, TeachersRow parentTeachersRowByTeachers_Courses) {
                 CoursesRow rowCoursesRow = ((CoursesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdCourse,
@@ -557,7 +595,11 @@ namespace CoursesDataBase_ {
                         Timetable,
                         Duration,
                         DuringOneLesson,
-                        CourseFee};
+                        CourseFee,
+                        null};
+                if ((parentTeachersRowByTeachers_Courses != null)) {
+                    columnValuesArray[6] = parentTeachersRowByTeachers_Courses[0];
+                }
                 rowCoursesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCoursesRow);
                 return rowCoursesRow;
@@ -593,6 +635,7 @@ namespace CoursesDataBase_ {
                 this.columnDuration = base.Columns["Duration"];
                 this.columnDuringOneLesson = base.Columns["DuringOneLesson"];
                 this.columnCourseFee = base.Columns["CourseFee"];
+                this.columnIdTeacher = base.Columns["IdTeacher"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -610,6 +653,8 @@ namespace CoursesDataBase_ {
                 base.Columns.Add(this.columnDuringOneLesson);
                 this.columnCourseFee = new global::System.Data.DataColumn("CourseFee", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCourseFee);
+                this.columnIdTeacher = new global::System.Data.DataColumn("IdTeacher", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdTeacher);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdCourse}, true));
                 this.columnIdCourse.AllowDBNull = false;
@@ -618,6 +663,7 @@ namespace CoursesDataBase_ {
                 this.columnDuration.AllowDBNull = false;
                 this.columnDuringOneLesson.AllowDBNull = false;
                 this.columnCourseFee.AllowDBNull = false;
+                this.columnIdTeacher.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -861,13 +907,22 @@ namespace CoursesDataBase_ {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ListOfStudyingRow AddListOfStudyingRow(long __, string IdCourse, string IdStudent, string IdTeacher) {
+            public ListOfStudyingRow AddListOfStudyingRow(long __, CoursesRow parentCoursesRowByCourses_ListOfStudying, StudentsRow parentStudentsRowByStudents_ListOfStudying, TeachersRow parentTeachersRowByTeachers_ListOfStudying) {
                 ListOfStudyingRow rowListOfStudyingRow = ((ListOfStudyingRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         __,
-                        IdCourse,
-                        IdStudent,
-                        IdTeacher};
+                        null,
+                        null,
+                        null};
+                if ((parentCoursesRowByCourses_ListOfStudying != null)) {
+                    columnValuesArray[1] = parentCoursesRowByCourses_ListOfStudying[0];
+                }
+                if ((parentStudentsRowByStudents_ListOfStudying != null)) {
+                    columnValuesArray[2] = parentStudentsRowByStudents_ListOfStudying[0];
+                }
+                if ((parentTeachersRowByTeachers_ListOfStudying != null)) {
+                    columnValuesArray[3] = parentTeachersRowByTeachers_ListOfStudying[0];
+                }
                 rowListOfStudyingRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowListOfStudyingRow);
                 return rowListOfStudyingRow;
@@ -2037,6 +2092,28 @@ namespace CoursesDataBase_ {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string IdTeacher {
+                get {
+                    return ((string)(this[this.tableCourses.IdTeacherColumn]));
+                }
+                set {
+                    this[this.tableCourses.IdTeacherColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TeachersRow TeachersRow {
+                get {
+                    return ((TeachersRow)(this.GetParentRow(this.Table.ParentRelations["Teachers_Courses"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Teachers_Courses"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCoursetTitleNull() {
                 return this.IsNull(this.tableCourses.CoursetTitleColumn);
             }
@@ -2045,6 +2122,17 @@ namespace CoursesDataBase_ {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCoursetTitleNull() {
                 this[this.tableCourses.CoursetTitleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ListOfStudyingRow[] GetListOfStudyingRows() {
+                if ((this.Table.ChildRelations["Courses_ListOfStudying"] == null)) {
+                    return new ListOfStudyingRow[0];
+                }
+                else {
+                    return ((ListOfStudyingRow[])(base.GetChildRows(this.Table.ChildRelations["Courses_ListOfStudying"])));
+                }
             }
         }
         
@@ -2113,6 +2201,39 @@ namespace CoursesDataBase_ {
                 }
                 set {
                     this[this.tableListOfStudying.IdTeacherColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TeachersRow TeachersRow {
+                get {
+                    return ((TeachersRow)(this.GetParentRow(this.Table.ParentRelations["Teachers_ListOfStudying"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Teachers_ListOfStudying"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public CoursesRow CoursesRow {
+                get {
+                    return ((CoursesRow)(this.GetParentRow(this.Table.ParentRelations["Courses_ListOfStudying"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Courses_ListOfStudying"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public StudentsRow StudentsRow {
+                get {
+                    return ((StudentsRow)(this.GetParentRow(this.Table.ParentRelations["Students_ListOfStudying"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Students_ListOfStudying"]);
                 }
             }
             
@@ -2348,6 +2469,17 @@ namespace CoursesDataBase_ {
             public void SetPhoneNumberNull() {
                 this[this.tableStudents.PhoneNumberColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ListOfStudyingRow[] GetListOfStudyingRows() {
+                if ((this.Table.ChildRelations["Students_ListOfStudying"] == null)) {
+                    return new ListOfStudyingRow[0];
+                }
+                else {
+                    return ((ListOfStudyingRow[])(base.GetChildRows(this.Table.ChildRelations["Students_ListOfStudying"])));
+                }
+            }
         }
         
         /// <summary>
@@ -2513,6 +2645,28 @@ namespace CoursesDataBase_ {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPhoneNumberNull() {
                 this[this.tableTeachers.PhoneNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public CoursesRow[] GetCoursesRows() {
+                if ((this.Table.ChildRelations["Teachers_Courses"] == null)) {
+                    return new CoursesRow[0];
+                }
+                else {
+                    return ((CoursesRow[])(base.GetChildRows(this.Table.ChildRelations["Teachers_Courses"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ListOfStudyingRow[] GetListOfStudyingRows() {
+                if ((this.Table.ChildRelations["Teachers_ListOfStudying"] == null)) {
+                    return new ListOfStudyingRow[0];
+                }
+                else {
+                    return ((ListOfStudyingRow[])(base.GetChildRows(this.Table.ChildRelations["Teachers_ListOfStudying"])));
+                }
             }
         }
         
@@ -2817,10 +2971,11 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
             tableMapping.ColumnMappings.Add("Duration", "Duration");
             tableMapping.ColumnMappings.Add("DuringOneLesson", "DuringOneLesson");
             tableMapping.ColumnMappings.Add("CourseFee", "CourseFee");
+            tableMapping.ColumnMappings.Add("IdTeacher", "IdTeacher");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Devart.Data.SQLite.SQLiteCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM ""main"".""Courses"" WHERE ((""IdCourse"" = :Original_IdCourse) AND ((:IsNull_CoursetTitle = 1 AND ""CoursetTitle"" IS NULL) OR (""CoursetTitle"" = :Original_CoursetTitle)) AND (""Timetable"" = :Original_Timetable) AND (""Duration"" = :Original_Duration) AND (""DuringOneLesson"" = :Original_DuringOneLesson) AND (""CourseFee"" = :Original_CourseFee))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM ""main"".""Courses"" WHERE ((""IdCourse"" = :Original_IdCourse) AND ((:IsNull_CoursetTitle = 1 AND ""CoursetTitle"" IS NULL) OR (""CoursetTitle"" = :Original_CoursetTitle)) AND (""Timetable"" = :Original_Timetable) AND (""Duration"" = :Original_Duration) AND (""DuringOneLesson"" = :Original_DuringOneLesson) AND (""CourseFee"" = :Original_CourseFee) AND (""IdTeacher"" = :Original_IdTeacher))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Devart.Data.SQLite.SQLiteParameter param = new global::Devart.Data.SQLite.SQLiteParameter();
             param.ParameterName = "Original_IdCourse";
@@ -2874,11 +3029,18 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
             param.SourceColumn = "CourseFee";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "Original_IdTeacher";
+            param.SQLiteType = global::Devart.Data.SQLite.SQLiteType.Text;
+            param.IsNullable = true;
+            param.SourceColumn = "IdTeacher";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Devart.Data.SQLite.SQLiteCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO \"main\".\"Courses\" (\"IdCourse\", \"CoursetTitle\", \"Timetable\", \"Duration\"" +
-                ", \"DuringOneLesson\", \"CourseFee\") VALUES (:IdCourse, :CoursetTitle, :Timetable, " +
-                ":Duration, :DuringOneLesson, :CourseFee)";
+                ", \"DuringOneLesson\", \"CourseFee\", \"IdTeacher\") VALUES (:IdCourse, :CoursetTitle," +
+                " :Timetable, :Duration, :DuringOneLesson, :CourseFee, :IdTeacher)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Devart.Data.SQLite.SQLiteParameter();
             param.ParameterName = "IdCourse";
@@ -2917,9 +3079,15 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "CourseFee";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Devart.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "IdTeacher";
+            param.SQLiteType = global::Devart.Data.SQLite.SQLiteType.Text;
+            param.IsNullable = true;
+            param.SourceColumn = "IdTeacher";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Devart.Data.SQLite.SQLiteCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""main"".""Courses"" SET ""IdCourse"" = :IdCourse, ""CoursetTitle"" = :CoursetTitle, ""Timetable"" = :Timetable, ""Duration"" = :Duration, ""DuringOneLesson"" = :DuringOneLesson, ""CourseFee"" = :CourseFee WHERE ((""IdCourse"" = :Original_IdCourse) AND ((:IsNull_CoursetTitle = 1 AND ""CoursetTitle"" IS NULL) OR (""CoursetTitle"" = :Original_CoursetTitle)) AND (""Timetable"" = :Original_Timetable) AND (""Duration"" = :Original_Duration) AND (""DuringOneLesson"" = :Original_DuringOneLesson) AND (""CourseFee"" = :Original_CourseFee))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""main"".""Courses"" SET ""IdCourse"" = :IdCourse, ""CoursetTitle"" = :CoursetTitle, ""Timetable"" = :Timetable, ""Duration"" = :Duration, ""DuringOneLesson"" = :DuringOneLesson, ""CourseFee"" = :CourseFee, ""IdTeacher"" = :IdTeacher WHERE ((""IdCourse"" = :Original_IdCourse) AND ((:IsNull_CoursetTitle = 1 AND ""CoursetTitle"" IS NULL) OR (""CoursetTitle"" = :Original_CoursetTitle)) AND (""Timetable"" = :Original_Timetable) AND (""Duration"" = :Original_Duration) AND (""DuringOneLesson"" = :Original_DuringOneLesson) AND (""CourseFee"" = :Original_CourseFee) AND (""IdTeacher"" = :Original_IdTeacher))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Devart.Data.SQLite.SQLiteParameter();
             param.ParameterName = "IdCourse";
@@ -2957,6 +3125,12 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
             param.SQLiteType = global::Devart.Data.SQLite.SQLiteType.Int64;
             param.IsNullable = true;
             param.SourceColumn = "CourseFee";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "IdTeacher";
+            param.SQLiteType = global::Devart.Data.SQLite.SQLiteType.Text;
+            param.IsNullable = true;
+            param.SourceColumn = "IdTeacher";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Devart.Data.SQLite.SQLiteParameter();
             param.ParameterName = "Original_IdCourse";
@@ -3010,6 +3184,13 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
             param.SourceColumn = "CourseFee";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "Original_IdTeacher";
+            param.SQLiteType = global::Devart.Data.SQLite.SQLiteType.Text;
+            param.IsNullable = true;
+            param.SourceColumn = "IdTeacher";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3025,8 +3206,8 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
             this._commandCollection = new global::Devart.Data.SQLite.SQLiteCommand[1];
             this._commandCollection[0] = new global::Devart.Data.SQLite.SQLiteCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT IdCourse, CoursetTitle, Timetable, Duration, DuringOneLesson, CourseFee FR" +
-                "OM \"main\".Courses";
+            this._commandCollection[0].CommandText = "SELECT        IdCourse, CoursetTitle, Timetable, Duration, DuringOneLesson, Cours" +
+                "eFee, IdTeacher\r\nFROM            Courses";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3087,7 +3268,7 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_IdCourse, string Original_CoursetTitle, string Original_Timetable, string Original_Duration, string Original_DuringOneLesson, long Original_CourseFee) {
+        public virtual int Delete(string Original_IdCourse, string Original_CoursetTitle, string Original_Timetable, string Original_Duration, string Original_DuringOneLesson, long Original_CourseFee, string Original_IdTeacher) {
             if ((Original_IdCourse == null)) {
                 throw new global::System.ArgumentNullException("Original_IdCourse");
             }
@@ -3121,6 +3302,12 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_DuringOneLesson));
             }
             this.Adapter.DeleteCommand.Parameters[6].Value = ((long)(Original_CourseFee));
+            if ((Original_IdTeacher == null)) {
+                throw new global::System.ArgumentNullException("Original_IdTeacher");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_IdTeacher));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3141,7 +3328,7 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string IdCourse, string CoursetTitle, string Timetable, string Duration, string DuringOneLesson, long CourseFee) {
+        public virtual int Insert(string IdCourse, string CoursetTitle, string Timetable, string Duration, string DuringOneLesson, long CourseFee, string IdTeacher) {
             if ((IdCourse == null)) {
                 throw new global::System.ArgumentNullException("IdCourse");
             }
@@ -3173,6 +3360,12 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
                 this.Adapter.InsertCommand.Parameters[4].Value = ((string)(DuringOneLesson));
             }
             this.Adapter.InsertCommand.Parameters[5].Value = ((long)(CourseFee));
+            if ((IdTeacher == null)) {
+                throw new global::System.ArgumentNullException("IdTeacher");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(IdTeacher));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3193,7 +3386,7 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string IdCourse, string CoursetTitle, string Timetable, string Duration, string DuringOneLesson, long CourseFee, string Original_IdCourse, string Original_CoursetTitle, string Original_Timetable, string Original_Duration, string Original_DuringOneLesson, long Original_CourseFee) {
+        public virtual int Update(string IdCourse, string CoursetTitle, string Timetable, string Duration, string DuringOneLesson, long CourseFee, string IdTeacher, string Original_IdCourse, string Original_CoursetTitle, string Original_Timetable, string Original_Duration, string Original_DuringOneLesson, long Original_CourseFee, string Original_IdTeacher) {
             if ((IdCourse == null)) {
                 throw new global::System.ArgumentNullException("IdCourse");
             }
@@ -3225,39 +3418,51 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
                 this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(DuringOneLesson));
             }
             this.Adapter.UpdateCommand.Parameters[5].Value = ((long)(CourseFee));
+            if ((IdTeacher == null)) {
+                throw new global::System.ArgumentNullException("IdTeacher");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(IdTeacher));
+            }
             if ((Original_IdCourse == null)) {
                 throw new global::System.ArgumentNullException("Original_IdCourse");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_IdCourse));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_IdCourse));
             }
             if ((Original_CoursetTitle == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_CoursetTitle));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_CoursetTitle));
             }
             if ((Original_Timetable == null)) {
                 throw new global::System.ArgumentNullException("Original_Timetable");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Timetable));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Timetable));
             }
             if ((Original_Duration == null)) {
                 throw new global::System.ArgumentNullException("Original_Duration");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Duration));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_Duration));
             }
             if ((Original_DuringOneLesson == null)) {
                 throw new global::System.ArgumentNullException("Original_DuringOneLesson");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_DuringOneLesson));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_DuringOneLesson));
             }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((long)(Original_CourseFee));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((long)(Original_CourseFee));
+            if ((Original_IdTeacher == null)) {
+                throw new global::System.ArgumentNullException("Original_IdTeacher");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_IdTeacher));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3278,8 +3483,8 @@ namespace CoursesDataBase_.DataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string CoursetTitle, string Timetable, string Duration, string DuringOneLesson, long CourseFee, string Original_IdCourse, string Original_CoursetTitle, string Original_Timetable, string Original_Duration, string Original_DuringOneLesson, long Original_CourseFee) {
-            return this.Update(Original_IdCourse, CoursetTitle, Timetable, Duration, DuringOneLesson, CourseFee, Original_IdCourse, Original_CoursetTitle, Original_Timetable, Original_Duration, Original_DuringOneLesson, Original_CourseFee);
+        public virtual int Update(string CoursetTitle, string Timetable, string Duration, string DuringOneLesson, long CourseFee, string IdTeacher, string Original_IdCourse, string Original_CoursetTitle, string Original_Timetable, string Original_Duration, string Original_DuringOneLesson, long Original_CourseFee, string Original_IdTeacher) {
+            return this.Update(Original_IdCourse, CoursetTitle, Timetable, Duration, DuringOneLesson, CourseFee, IdTeacher, Original_IdCourse, Original_CoursetTitle, Original_Timetable, Original_Duration, Original_DuringOneLesson, Original_CourseFee, Original_IdTeacher);
         }
     }
     
@@ -5701,12 +5906,30 @@ WHERE        (IdTeacher LIKE :IdTeacher) OR
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(DataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._teachersTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Teachers.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._teachersTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._coursesTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Courses.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._coursesTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._studentsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Students.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._studentsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -5728,24 +5951,6 @@ WHERE        (IdTeacher LIKE :IdTeacher) OR
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._studentsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Students.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._studentsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._teachersTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Teachers.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._teachersTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -5756,11 +5961,27 @@ WHERE        (IdTeacher LIKE :IdTeacher) OR
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(DataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._teachersTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Teachers.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._teachersTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._coursesTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Courses.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._coursesTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._studentsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Students.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._studentsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -5780,22 +6001,6 @@ WHERE        (IdTeacher LIKE :IdTeacher) OR
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._studentsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Students.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._studentsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._teachersTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Teachers.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._teachersTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -5806,22 +6011,6 @@ WHERE        (IdTeacher LIKE :IdTeacher) OR
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(DataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._teachersTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Teachers.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._teachersTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._studentsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Students.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._studentsTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._sqlite_sequenceTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.sqlite_sequence.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -5838,11 +6027,27 @@ WHERE        (IdTeacher LIKE :IdTeacher) OR
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._studentsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Students.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._studentsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._coursesTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Courses.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._coursesTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._teachersTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Teachers.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._teachersTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
