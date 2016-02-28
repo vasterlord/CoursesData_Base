@@ -126,7 +126,7 @@
             this.toolStripSeparator2,
             this.toolStripLabel2,
             this.toolStripButton3});
-            this.studentsBindingNavigator.Location = new System.Drawing.Point(160, 21);
+            this.studentsBindingNavigator.Location = new System.Drawing.Point(161, 21);
             this.studentsBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.studentsBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.studentsBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -406,15 +406,15 @@
             this.searchingStudentsToolStripButton});
             this.searchingStudentsToolStrip.Location = new System.Drawing.Point(47, 58);
             this.searchingStudentsToolStrip.Name = "searchingStudentsToolStrip";
-            this.searchingStudentsToolStrip.Size = new System.Drawing.Size(641, 25);
+            this.searchingStudentsToolStrip.Size = new System.Drawing.Size(678, 25);
             this.searchingStudentsToolStrip.TabIndex = 14;
             this.searchingStudentsToolStrip.Text = "searchingStudentsToolStrip";
             // 
             // idStudentToolStripLabel
             // 
             this.idStudentToolStripLabel.Name = "idStudentToolStripLabel";
-            this.idStudentToolStripLabel.Size = new System.Drawing.Size(61, 22);
-            this.idStudentToolStripLabel.Text = "&IdStudent:";
+            this.idStudentToolStripLabel.Size = new System.Drawing.Size(64, 22);
+            this.idStudentToolStripLabel.Text = "&Id Student:";
             // 
             // idStudentToolStripTextBox
             // 
@@ -424,8 +424,8 @@
             // fullNameToolStripLabel
             // 
             this.fullNameToolStripLabel.Name = "fullNameToolStripLabel";
-            this.fullNameToolStripLabel.Size = new System.Drawing.Size(61, 22);
-            this.fullNameToolStripLabel.Text = "&FullName:";
+            this.fullNameToolStripLabel.Size = new System.Drawing.Size(64, 22);
+            this.fullNameToolStripLabel.Text = "&Full Name:";
             // 
             // fullNameToolStripTextBox
             // 
@@ -484,6 +484,7 @@
             this.groupBox1.Size = new System.Drawing.Size(782, 100);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // dataGridViewTextBoxColumn1
             // 

@@ -86,5 +86,10 @@ namespace CoursesDataBase_
         {
             toolStripStatusLabel3.Text = DateTime.Now.ToString(); 
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
