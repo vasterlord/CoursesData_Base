@@ -50,6 +50,7 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.teachersBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -86,7 +87,6 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.teachersTableAdapter = new CoursesDataBase_.DataSet1TableAdapters.TeachersTableAdapter();
             this.tableAdapterManager = new CoursesDataBase_.DataSet1TableAdapters.TableAdapterManager();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             idTeacherLabel = new System.Windows.Forms.Label();
             phoneNumberLabel = new System.Windows.Forms.Label();
             fullNameLabel = new System.Windows.Forms.Label();
@@ -110,9 +110,9 @@
             idTeacherLabel.Location = new System.Drawing.Point(40, 16);
             idTeacherLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             idTeacherLabel.Name = "idTeacherLabel";
-            idTeacherLabel.Size = new System.Drawing.Size(80, 17);
+            idTeacherLabel.Size = new System.Drawing.Size(77, 17);
             idTeacherLabel.TabIndex = 2;
-            idTeacherLabel.Text = "&Id Teacher:";
+            idTeacherLabel.Text = "&Id teacher:";
             // 
             // phoneNumberLabel
             // 
@@ -121,9 +121,9 @@
             phoneNumberLabel.Location = new System.Drawing.Point(14, 64);
             phoneNumberLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             phoneNumberLabel.Name = "phoneNumberLabel";
-            phoneNumberLabel.Size = new System.Drawing.Size(106, 17);
+            phoneNumberLabel.Size = new System.Drawing.Size(104, 17);
             phoneNumberLabel.TabIndex = 4;
-            phoneNumberLabel.Text = "&Phone Number:";
+            phoneNumberLabel.Text = "&Phone number:";
             // 
             // fullNameLabel
             // 
@@ -132,9 +132,9 @@
             fullNameLabel.Location = new System.Drawing.Point(271, 16);
             fullNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             fullNameLabel.Name = "fullNameLabel";
-            fullNameLabel.Size = new System.Drawing.Size(77, 17);
+            fullNameLabel.Size = new System.Drawing.Size(75, 17);
             fullNameLabel.TabIndex = 6;
-            fullNameLabel.Text = "&Full Name:";
+            fullNameLabel.Text = "&Full name:";
             // 
             // homeAddressLabel
             // 
@@ -143,9 +143,9 @@
             homeAddressLabel.Location = new System.Drawing.Point(562, 16);
             homeAddressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             homeAddressLabel.Name = "homeAddressLabel";
-            homeAddressLabel.Size = new System.Drawing.Size(102, 17);
+            homeAddressLabel.Size = new System.Drawing.Size(101, 17);
             homeAddressLabel.TabIndex = 8;
-            homeAddressLabel.Text = "&Home Address:";
+            homeAddressLabel.Text = "&Home address:";
             // 
             // passportLabel
             // 
@@ -203,7 +203,7 @@
             this.teachersBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.teachersBindingNavigator.Name = "teachersBindingNavigator";
             this.teachersBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.teachersBindingNavigator.Size = new System.Drawing.Size(487, 25);
+            this.teachersBindingNavigator.Size = new System.Drawing.Size(456, 25);
             this.teachersBindingNavigator.TabIndex = 0;
             this.teachersBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -310,6 +310,11 @@
             this.teachersBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.teachersBindingNavigatorSaveItem.Text = "Save Data";
             this.teachersBindingNavigatorSaveItem.Click += new System.EventHandler(this.teachersBindingNavigatorSaveItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripLabel1
             // 
@@ -456,7 +461,7 @@
             this.searchTeachersToolStripButton});
             this.searchTeachersToolStrip.Location = new System.Drawing.Point(143, 48);
             this.searchTeachersToolStrip.Name = "searchTeachersToolStrip";
-            this.searchTeachersToolStrip.Size = new System.Drawing.Size(645, 25);
+            this.searchTeachersToolStrip.Size = new System.Drawing.Size(643, 25);
             this.searchTeachersToolStrip.TabIndex = 18;
             this.searchTeachersToolStrip.Text = "searchTeachersToolStrip";
             // 
@@ -464,7 +469,7 @@
             // 
             this.idTeacherToolStripLabel.Name = "idTeacherToolStripLabel";
             this.idTeacherToolStripLabel.Size = new System.Drawing.Size(62, 22);
-            this.idTeacherToolStripLabel.Text = "IdTeacher:";
+            this.idTeacherToolStripLabel.Text = "Id teacher:";
             // 
             // idTeacherToolStripTextBox
             // 
@@ -474,8 +479,8 @@
             // fullNameToolStripLabel
             // 
             this.fullNameToolStripLabel.Name = "fullNameToolStripLabel";
-            this.fullNameToolStripLabel.Size = new System.Drawing.Size(64, 22);
-            this.fullNameToolStripLabel.Text = "&Full Name:";
+            this.fullNameToolStripLabel.Size = new System.Drawing.Size(62, 22);
+            this.fullNameToolStripLabel.Text = "&Full name:";
             // 
             // fullNameToolStripTextBox
             // 
@@ -604,11 +609,6 @@
             this.tableAdapterManager.TeachersTableAdapter = this.teachersTableAdapter;
             this.tableAdapterManager.UpdateOrder = CoursesDataBase_.DataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -630,7 +630,9 @@
             this.Controls.Add(idTeacherLabel);
             this.Controls.Add(this.idTeacherTextBox);
             this.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "Form4";
             this.Text = "Teachers";
             this.Load += new System.EventHandler(this.Form4_Load);

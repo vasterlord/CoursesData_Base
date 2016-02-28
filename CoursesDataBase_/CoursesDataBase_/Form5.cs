@@ -15,6 +15,75 @@ namespace CoursesDataBase_
         public Form5()
         {
             InitializeComponent();
+            timer1.Tick += new EventHandler(timer1_Tick);
+        }
+
+        private void coursesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.coursesBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.dataSet1);
+
+        }
+
+        private void Form5_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dataSet1.Courses' table. You can move, or remove it, as needed.
+            this.coursesTableAdapter.Fill(this.dataSet1.Courses);
+
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void fillByCoursesToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.coursesTableAdapter.FillByCourses(this.dataSet1.Courses);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void searchTeachersToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.coursesTableAdapter.SearchTeachers(this.dataSet1.Courses, idCourseToolStripTextBox.Text, idTeacherToolStripTextBox.Text, coursetTitleToolStripTextBox.Text);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            this.coursesBindingSource.CancelEdit();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.coursesTableAdapter.FillByCourses(this.dataSet1.Courses);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusLabel3.Text = DateTime.Now.ToString(); 
         }
     }
 }
