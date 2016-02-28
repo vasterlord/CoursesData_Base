@@ -36,8 +36,8 @@
             System.Windows.Forms.Label durationLabel;
             System.Windows.Forms.Label duringOneLessonLabel;
             System.Windows.Forms.Label courseFeeLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form5));
             System.Windows.Forms.Label label1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form5));
             this.dataSet1 = new CoursesDataBase_.DataSet1();
             this.coursesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.coursesTableAdapter = new CoursesDataBase_.DataSet1TableAdapters.CoursesTableAdapter();
@@ -73,7 +73,6 @@
             this.idCourseTextBox = new System.Windows.Forms.TextBox();
             this.coursetTitleTextBox = new System.Windows.Forms.TextBox();
             this.timetableTextBox = new System.Windows.Forms.TextBox();
-            this.idTeacherComboBox = new System.Windows.Forms.ComboBox();
             this.durationTextBox = new System.Windows.Forms.TextBox();
             this.duringOneLessonTextBox = new System.Windows.Forms.TextBox();
             this.courseFeeTextBox = new System.Windows.Forms.TextBox();
@@ -91,6 +90,7 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.idTeacherTextBox = new System.Windows.Forms.TextBox();
             idCourseLabel = new System.Windows.Forms.Label();
             coursetTitleLabel = new System.Windows.Forms.Label();
             timetableLabel = new System.Windows.Forms.Label();
@@ -172,6 +172,15 @@
             courseFeeLabel.TabIndex = 14;
             courseFeeLabel.Text = "&Course fee:";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(908, 15);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(39, 17);
+            label1.TabIndex = 19;
+            label1.Text = "&UAH";
+            // 
             // dataSet1
             // 
             this.dataSet1.DataSetName = "DataSet1";
@@ -189,9 +198,11 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CoursesShortTableAdapter = null;
             this.tableAdapterManager.CoursesTableAdapter = this.coursesTableAdapter;
             this.tableAdapterManager.ListOfStudyingTableAdapter = null;
             this.tableAdapterManager.sqlite_sequenceTableAdapter = null;
+            this.tableAdapterManager.StudentsShortTableAdapter = null;
             this.tableAdapterManager.StudentsTableAdapter = null;
             this.tableAdapterManager.TeachersTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = CoursesDataBase_.DataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
@@ -230,7 +241,7 @@
             this.coursesBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.coursesBindingNavigator.Name = "coursesBindingNavigator";
             this.coursesBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.coursesBindingNavigator.Size = new System.Drawing.Size(441, 25);
+            this.coursesBindingNavigator.Size = new System.Drawing.Size(472, 25);
             this.coursesBindingNavigator.TabIndex = 0;
             this.coursesBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -480,15 +491,6 @@
             this.timetableTextBox.Size = new System.Drawing.Size(138, 25);
             this.timetableTextBox.TabIndex = 7;
             // 
-            // idTeacherComboBox
-            // 
-            this.idTeacherComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.coursesBindingSource, "IdTeacher", true));
-            this.idTeacherComboBox.FormattingEnabled = true;
-            this.idTeacherComboBox.Location = new System.Drawing.Point(89, 55);
-            this.idTeacherComboBox.Name = "idTeacherComboBox";
-            this.idTeacherComboBox.Size = new System.Drawing.Size(129, 25);
-            this.idTeacherComboBox.TabIndex = 9;
-            // 
             // durationTextBox
             // 
             this.durationTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.coursesBindingSource, "Duration", true));
@@ -588,9 +590,9 @@
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel3});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 456);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 470);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(954, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(969, 22);
             this.statusStrip1.TabIndex = 18;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -616,20 +618,20 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label1
+            // idTeacherTextBox
             // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(908, 15);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(39, 17);
-            label1.TabIndex = 19;
-            label1.Text = "&UAH";
+            this.idTeacherTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.coursesBindingSource, "IdTeacher", true));
+            this.idTeacherTextBox.Location = new System.Drawing.Point(89, 50);
+            this.idTeacherTextBox.Name = "idTeacherTextBox";
+            this.idTeacherTextBox.Size = new System.Drawing.Size(129, 25);
+            this.idTeacherTextBox.TabIndex = 20;
             // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(954, 478);
+            this.ClientSize = new System.Drawing.Size(969, 492);
+            this.Controls.Add(this.idTeacherTextBox);
             this.Controls.Add(label1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
@@ -640,7 +642,6 @@
             this.Controls.Add(durationLabel);
             this.Controls.Add(this.durationTextBox);
             this.Controls.Add(idTeacherLabel);
-            this.Controls.Add(this.idTeacherComboBox);
             this.Controls.Add(timetableLabel);
             this.Controls.Add(this.timetableTextBox);
             this.Controls.Add(coursetTitleLabel);
@@ -702,7 +703,6 @@
         private System.Windows.Forms.TextBox idCourseTextBox;
         private System.Windows.Forms.TextBox coursetTitleTextBox;
         private System.Windows.Forms.TextBox timetableTextBox;
-        private System.Windows.Forms.ComboBox idTeacherComboBox;
         private System.Windows.Forms.TextBox durationTextBox;
         private System.Windows.Forms.TextBox duringOneLessonTextBox;
         private System.Windows.Forms.TextBox courseFeeTextBox;
@@ -727,5 +727,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox idTeacherTextBox;
     }
 }
