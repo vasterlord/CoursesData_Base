@@ -114,7 +114,7 @@
             this.labelCopyright.Name = "labelCopyright";
             this.labelCopyright.Size = new System.Drawing.Size(513, 17);
             this.labelCopyright.TabIndex = 21;
-            this.labelCopyright.Text = "&Copyright @2015-Mylian, Lviv. All rights reserved\r\n";
+            this.labelCopyright.Text = "&Copyright @2016-Mylian, Lviv. All rights reserved\r\n";
             this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelCompanyName
@@ -162,6 +162,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 345);
             this.Controls.Add(this.tableLayoutPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "Form2";
             this.Text = "About program";
             this.tableLayoutPanel.ResumeLayout(false);
