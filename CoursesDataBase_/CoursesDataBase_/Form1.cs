@@ -68,5 +68,11 @@ namespace CoursesDataBase_
             Form FormNameCourses = new Form5();
             FormNameCourses.ShowDialog();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form FormNameStudyingList  = new Form6();
+            FormNameStudyingList .ShowDialog();
+        }
     }
 }
