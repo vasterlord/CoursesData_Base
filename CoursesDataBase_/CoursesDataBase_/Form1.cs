@@ -47,8 +47,14 @@ namespace CoursesDataBase_
 
         private void aboutProgramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form FormNameFourth = new Form2();
-            FormNameFourth.ShowDialog();
+            Form FormNameAboutProgram = new Form2();
+            FormNameAboutProgram.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form FormNameStudents = new Form3();
+            FormNameStudents.ShowDialog();
         }
     }
 }
