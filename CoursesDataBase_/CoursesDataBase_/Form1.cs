@@ -77,22 +77,19 @@ namespace CoursesDataBase_
 
         private void button5_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (textBox1.Text == "123456") {
+
+                if (textBox1.Text == "123456")
+                {
                     aboutProgramToolStripMenuItem.Enabled = true;
                     button1.Enabled = true;
                     button2.Enabled = true;
                     button3.Enabled = true;
-                    button4.Enabled = true; 
-                }   
-            }
-                catch(Exception ex) 
-                  {
-                      MessageBox.Show(ex.Message, "Important message" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    button4.Enabled = true;
                 }
-
-            
+                else  
+                {
+                    MessageBox.Show(" Wrong password. Please, enter your password again ", " Important message ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } 
         }
     }
 }
