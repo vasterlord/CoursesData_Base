@@ -28,5 +28,43 @@ namespace CoursesDataBase_
         {
             Close();
         }
+
+        private void fillByStudCourseToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.studQueryButtonTableAdapter.FillByStudCourse(this.dataSet1.StudQueryButton);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.studQueryButtonTableAdapter.FillByStudCourse(this.dataSet1.StudQueryButton);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void serachStudCourseToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.studQueryButtonTableAdapter.SerachStudCourse(this.dataSet1.StudQueryButton, iDStudentToolStripTextBox.Text, fullNameToolStripTextBox.Text, idlistToolStripTextBox.Text, idCourseToolStripTextBox.Text, coursetTitleToolStripTextBox.Text);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }

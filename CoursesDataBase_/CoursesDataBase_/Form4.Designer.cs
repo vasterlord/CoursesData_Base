@@ -38,6 +38,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form4));
             this.teachersBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.teachersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSet1 = new CoursesDataBase_.DataSet1();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -63,6 +65,12 @@
             this.passportTextBox = new System.Windows.Forms.TextBox();
             this.identification_codeTextBox = new System.Windows.Forms.TextBox();
             this.teachersDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.searchTeachersToolStrip = new System.Windows.Forms.ToolStrip();
             this.idTeacherToolStripLabel = new System.Windows.Forms.ToolStripLabel();
@@ -77,14 +85,9 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.teachersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new CoursesDataBase_.DataSet1();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.teacherCoursesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.teacherIsTrainedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.teachersTableAdapter = new CoursesDataBase_.DataSet1TableAdapters.TeachersTableAdapter();
             this.tableAdapterManager = new CoursesDataBase_.DataSet1TableAdapters.TableAdapterManager();
             idTeacherLabel = new System.Windows.Forms.Label();
@@ -95,19 +98,20 @@
             identification_codeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.teachersBindingNavigator)).BeginInit();
             this.teachersBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teachersDataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.searchTeachersToolStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // idTeacherLabel
             // 
             idTeacherLabel.AutoSize = true;
             idTeacherLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            idTeacherLabel.Location = new System.Drawing.Point(40, 16);
+            idTeacherLabel.Location = new System.Drawing.Point(40, 40);
             idTeacherLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             idTeacherLabel.Name = "idTeacherLabel";
             idTeacherLabel.Size = new System.Drawing.Size(77, 17);
@@ -118,7 +122,7 @@
             // 
             phoneNumberLabel.AutoSize = true;
             phoneNumberLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            phoneNumberLabel.Location = new System.Drawing.Point(14, 64);
+            phoneNumberLabel.Location = new System.Drawing.Point(14, 80);
             phoneNumberLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             phoneNumberLabel.Name = "phoneNumberLabel";
             phoneNumberLabel.Size = new System.Drawing.Size(104, 17);
@@ -129,7 +133,7 @@
             // 
             fullNameLabel.AutoSize = true;
             fullNameLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            fullNameLabel.Location = new System.Drawing.Point(271, 16);
+            fullNameLabel.Location = new System.Drawing.Point(271, 40);
             fullNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             fullNameLabel.Name = "fullNameLabel";
             fullNameLabel.Size = new System.Drawing.Size(75, 17);
@@ -140,7 +144,7 @@
             // 
             homeAddressLabel.AutoSize = true;
             homeAddressLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            homeAddressLabel.Location = new System.Drawing.Point(562, 16);
+            homeAddressLabel.Location = new System.Drawing.Point(562, 40);
             homeAddressLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             homeAddressLabel.Name = "homeAddressLabel";
             homeAddressLabel.Size = new System.Drawing.Size(101, 17);
@@ -151,7 +155,7 @@
             // 
             passportLabel.AutoSize = true;
             passportLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            passportLabel.Location = new System.Drawing.Point(280, 64);
+            passportLabel.Location = new System.Drawing.Point(280, 80);
             passportLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             passportLabel.Name = "passportLabel";
             passportLabel.Size = new System.Drawing.Size(68, 17);
@@ -162,7 +166,7 @@
             // 
             identification_codeLabel.AutoSize = true;
             identification_codeLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            identification_codeLabel.Location = new System.Drawing.Point(533, 62);
+            identification_codeLabel.Location = new System.Drawing.Point(533, 83);
             identification_codeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             identification_codeLabel.Name = "identification_codeLabel";
             identification_codeLabel.Size = new System.Drawing.Size(131, 17);
@@ -215,6 +219,16 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // teachersBindingSource
+            // 
+            this.teachersBindingSource.DataMember = "Teachers";
+            this.teachersBindingSource.DataSource = this.dataSet1;
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "DataSet1";
+            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bindingNavigatorCountItem
             // 
@@ -357,7 +371,7 @@
             // 
             this.idTeacherTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.teachersBindingSource, "IdTeacher", true));
             this.idTeacherTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.idTeacherTextBox.Location = new System.Drawing.Point(128, 13);
+            this.idTeacherTextBox.Location = new System.Drawing.Point(128, 37);
             this.idTeacherTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.idTeacherTextBox.Name = "idTeacherTextBox";
             this.idTeacherTextBox.Size = new System.Drawing.Size(132, 25);
@@ -367,7 +381,7 @@
             // 
             this.phoneNumberTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.teachersBindingSource, "PhoneNumber", true));
             this.phoneNumberTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.phoneNumberTextBox.Location = new System.Drawing.Point(128, 61);
+            this.phoneNumberTextBox.Location = new System.Drawing.Point(128, 77);
             this.phoneNumberTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.phoneNumberTextBox.Name = "phoneNumberTextBox";
             this.phoneNumberTextBox.Size = new System.Drawing.Size(132, 25);
@@ -377,7 +391,7 @@
             // 
             this.fullNameRichTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.teachersBindingSource, "FullName", true));
             this.fullNameRichTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fullNameRichTextBox.Location = new System.Drawing.Point(356, 5);
+            this.fullNameRichTextBox.Location = new System.Drawing.Point(356, 29);
             this.fullNameRichTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.fullNameRichTextBox.Name = "fullNameRichTextBox";
             this.fullNameRichTextBox.Size = new System.Drawing.Size(166, 41);
@@ -388,7 +402,7 @@
             // 
             this.homeAddressRichTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.teachersBindingSource, "HomeAddress", true));
             this.homeAddressRichTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.homeAddressRichTextBox.Location = new System.Drawing.Point(671, 5);
+            this.homeAddressRichTextBox.Location = new System.Drawing.Point(671, 29);
             this.homeAddressRichTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.homeAddressRichTextBox.Name = "homeAddressRichTextBox";
             this.homeAddressRichTextBox.Size = new System.Drawing.Size(226, 41);
@@ -399,7 +413,7 @@
             // 
             this.passportTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.teachersBindingSource, "Passport", true));
             this.passportTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.passportTextBox.Location = new System.Drawing.Point(356, 59);
+            this.passportTextBox.Location = new System.Drawing.Point(356, 77);
             this.passportTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.passportTextBox.Name = "passportTextBox";
             this.passportTextBox.Size = new System.Drawing.Size(166, 25);
@@ -409,7 +423,7 @@
             // 
             this.identification_codeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.teachersBindingSource, "Identification code", true));
             this.identification_codeTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.identification_codeTextBox.Location = new System.Drawing.Point(671, 56);
+            this.identification_codeTextBox.Location = new System.Drawing.Point(672, 77);
             this.identification_codeTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.identification_codeTextBox.Name = "identification_codeTextBox";
             this.identification_codeTextBox.Size = new System.Drawing.Size(226, 25);
@@ -429,7 +443,7 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
             this.teachersDataGridView.DataSource = this.teachersBindingSource;
-            this.teachersDataGridView.Location = new System.Drawing.Point(13, 185);
+            this.teachersDataGridView.Location = new System.Drawing.Point(13, 198);
             this.teachersDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.teachersDataGridView.Name = "teachersDataGridView";
             this.teachersDataGridView.ReadOnly = true;
@@ -437,12 +451,57 @@
             this.teachersDataGridView.TabIndex = 14;
             this.teachersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.teachersDataGridView_CellContentClick);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "IdTeacher";
+            this.dataGridViewTextBoxColumn1.HeaderText = "IdTeacher";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "FullName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "FullName";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 215;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Passport";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Passport";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Identification code";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Identification code";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "HomeAddress";
+            this.dataGridViewTextBoxColumn5.HeaderText = "HomeAddress";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "PhoneNumber";
+            this.dataGridViewTextBoxColumn6.HeaderText = "PhoneNumber";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 120;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.searchTeachersToolStrip);
             this.groupBox1.Controls.Add(this.teachersBindingNavigator);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 91);
+            this.groupBox1.Location = new System.Drawing.Point(12, 104);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(885, 87);
             this.groupBox1.TabIndex = 15;
@@ -517,7 +576,7 @@
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel3});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 478);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 489);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(901, 22);
             this.statusStrip1.TabIndex = 17;
@@ -540,60 +599,30 @@
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(7, 17);
             this.toolStripStatusLabel3.Text = "&";
             // 
-            // teachersBindingSource
+            // menuStrip1
             // 
-            this.teachersBindingSource.DataMember = "Teachers";
-            this.teachersBindingSource.DataSource = this.dataSet1;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.teacherCoursesToolStripMenuItem,
+            this.teacherIsTrainedToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(901, 24);
+            this.menuStrip1.TabIndex = 18;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // dataSet1
+            // teacherCoursesToolStripMenuItem
             // 
-            this.dataSet1.DataSetName = "DataSet1";
-            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.teacherCoursesToolStripMenuItem.Name = "teacherCoursesToolStripMenuItem";
+            this.teacherCoursesToolStripMenuItem.Size = new System.Drawing.Size(104, 20);
+            this.teacherCoursesToolStripMenuItem.Text = "&Teacher courses";
+            this.teacherCoursesToolStripMenuItem.Click += new System.EventHandler(this.teacherCoursesToolStripMenuItem_Click);
             // 
-            // dataGridViewTextBoxColumn1
+            // teacherIsTrainedToolStripMenuItem
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "IdTeacher";
-            this.dataGridViewTextBoxColumn1.HeaderText = "IdTeacher";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "FullName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "FullName";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 215;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Passport";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Passport";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Identification code";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Identification code";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "HomeAddress";
-            this.dataGridViewTextBoxColumn5.HeaderText = "HomeAddress";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "PhoneNumber";
-            this.dataGridViewTextBoxColumn6.HeaderText = "PhoneNumber";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 120;
+            this.teacherIsTrainedToolStripMenuItem.Name = "teacherIsTrainedToolStripMenuItem";
+            this.teacherIsTrainedToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.teacherIsTrainedToolStripMenuItem.Text = "&Teacher is trained";
+            this.teacherIsTrainedToolStripMenuItem.Click += new System.EventHandler(this.teacherIsTrainedToolStripMenuItem_Click);
             // 
             // teachersTableAdapter
             // 
@@ -602,9 +631,11 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CoursesShortTableAdapter = null;
             this.tableAdapterManager.CoursesTableAdapter = null;
             this.tableAdapterManager.ListOfStudyingTableAdapter = null;
             this.tableAdapterManager.sqlite_sequenceTableAdapter = null;
+            this.tableAdapterManager.StudentsShortTableAdapter = null;
             this.tableAdapterManager.StudentsTableAdapter = null;
             this.tableAdapterManager.TeachersTableAdapter = this.teachersTableAdapter;
             this.tableAdapterManager.UpdateOrder = CoursesDataBase_.DataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
@@ -613,8 +644,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 500);
+            this.ClientSize = new System.Drawing.Size(901, 511);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.teachersDataGridView);
             this.Controls.Add(identification_codeLabel);
@@ -631,6 +663,7 @@
             this.Controls.Add(this.idTeacherTextBox);
             this.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Italic);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form4";
@@ -639,6 +672,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.teachersBindingNavigator)).EndInit();
             this.teachersBindingNavigator.ResumeLayout(false);
             this.teachersBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teachersDataGridView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -646,8 +681,8 @@
             this.searchTeachersToolStrip.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.teachersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -706,5 +741,8 @@
         private System.Windows.Forms.ToolStripTextBox passportToolStripTextBox;
         private System.Windows.Forms.ToolStripButton searchTeachersToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem teacherCoursesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem teacherIsTrainedToolStripMenuItem;
     }
 }

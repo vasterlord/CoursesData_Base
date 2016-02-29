@@ -101,5 +101,17 @@ namespace CoursesDataBase_
         {
             toolStripStatusLabel3.Text = DateTime.Now.ToString(); 
         }
+
+        private void teacherCoursesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form FormNameStudyingList = new Form8();
+            FormNameStudyingList.ShowDialog();
+        }
+
+        private void teacherIsTrainedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form FormNameStudyingList = new Form9();
+            FormNameStudyingList.ShowDialog();
+        }
     }
 }

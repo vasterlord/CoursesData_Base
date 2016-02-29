@@ -527,7 +527,7 @@ FROM            Teachers INNER JOIN
               <Mapping SourceColumn="IdTeacher" DataSetColumn="IdTeacher" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectName="&quot;main&quot;.ListOfStudying" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByList" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillByList">
+              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectName="&quot;main&quot;.ListOfStudying" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByList" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT Idlist, IdCourse, IdStudent, IdTeacher FROM "main".ListOfStudying</CommandText>
@@ -535,7 +535,7 @@ FROM            Teachers INNER JOIN
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectName="&quot;main&quot;.ListOfStudying" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="SearchListStudying" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="SearchListStudying" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="SearchListStudying">
+              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectName="&quot;main&quot;.ListOfStudying" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="SearchListStudying" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="SearchListStudying" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="SearchListStudying">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        Idlist, IdCourse, IdStudent, IdTeacher
@@ -582,7 +582,150 @@ FROM            Students INNER JOIN
               <Mapping SourceColumn="CoursetTitle" DataSetColumn="CoursetTitle" />
               <Mapping SourceColumn="IdTeacher" DataSetColumn="IdTeacher" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByStudCourse" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByStudCourse" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByStudCourse">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT        Students.IdStudent, Students.FullName, Students.Passport, Students.HomeAddress, Students.PhoneNumber, ListOfStudying.Idlist, ListOfStudying.IdCourse, 
+                         Courses.CoursetTitle, Teachers.IdTeacher
+FROM            Students INNER JOIN
+                         ListOfStudying ON Students.IdStudent = ListOfStudying.IdStudent INNER JOIN
+                         Courses ON ListOfStudying.IdCourse = Courses.IdCourse INNER JOIN
+                         Teachers ON ListOfStudying.IdTeacher = Teachers.IdTeacher</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="SerachStudCourse" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="SerachStudCourse" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="SerachStudCourse">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT        Students.IdStudent, Students.FullName, Students.Passport, Students.HomeAddress, Students.PhoneNumber, ListOfStudying.Idlist, ListOfStudying.IdCourse, 
+                         Courses.CoursetTitle, Teachers.IdTeacher
+FROM            Students INNER JOIN
+                         ListOfStudying ON Students.IdStudent = ListOfStudying.IdStudent INNER JOIN
+                         Courses ON ListOfStudying.IdCourse = Courses.IdCourse INNER JOIN
+                         Teachers ON ListOfStudying.IdTeacher = Teachers.IdTeacher
+WHERE        (Students.IdStudent LIKE :IDStudent) OR
+                         (Students.FullName LIKE :FullName) OR
+                         (ListOfStudying.Idlist LIKE :Idlist) OR
+                         (ListOfStudying.IdCourse LIKE :IdCourse) OR
+                         (Courses.CoursetTitle LIKE :CoursetTitle)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="IDStudent" ColumnName="IdStudent" DataSourceName="&quot;main&quot;.Students" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="IDStudent" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="IdStudent" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="FullName" ColumnName="FullName" DataSourceName="&quot;main&quot;.Students" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="FullName" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="FullName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Idlist" ColumnName="Idlist" DataSourceName="&quot;main&quot;.ListOfStudying" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="Idlist" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="Idlist" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="IdCourse" ColumnName="IdCourse" DataSourceName="&quot;main&quot;.ListOfStudying" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="IdCourse" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="IdCourse" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CoursetTitle" ColumnName="CoursetTitle" DataSourceName="&quot;main&quot;.Courses" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="CoursetTitle" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="CoursetTitle" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TeachCourseTableAdapter" GeneratorDataComponentClassName="TeachCourseTableAdapter" Name="TeachCourse" UserDataComponentName="TeachCourseTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Teachers.IdTeacher, Teachers.FullName, Courses.IdCourse, Courses.CoursetTitle
+FROM            Teachers INNER JOIN
+                         Courses ON Teachers.IdTeacher = Courses.IdTeacher</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdTeacher" DataSetColumn="IdTeacher" />
+              <Mapping SourceColumn="FullName" DataSetColumn="FullName" />
+              <Mapping SourceColumn="IdCourse" DataSetColumn="IdCourse" />
+              <Mapping SourceColumn="CoursetTitle" DataSetColumn="CoursetTitle" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillBy">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT        Teachers.IdTeacher, Teachers.FullName, Courses.IdCourse, Courses.CoursetTitle
+FROM            Teachers INNER JOIN
+                         Courses ON Teachers.IdTeacher = Courses.IdTeacher
+WHERE        (Teachers.IdTeacher LIKE :IdTeacher) OR
+                         (Teachers.FullName LIKE :FullName) OR
+                         (Courses.IdCourse LIKE :IdCourse) OR
+                         (Courses.CoursetTitle LIKE :CoursetTitle)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="IdTeacher" ColumnName="IdTeacher" DataSourceName="&quot;main&quot;.Teachers" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="IdTeacher" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="IdTeacher" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="FullName" ColumnName="FullName" DataSourceName="&quot;main&quot;.Teachers" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="FullName" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="FullName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="IdCourse" ColumnName="IdCourse" DataSourceName="&quot;main&quot;.Courses" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="IdCourse" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="IdCourse" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CoursetTitle" ColumnName="CoursetTitle" DataSourceName="&quot;main&quot;.Courses" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="CoursetTitle" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="CoursetTitle" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByTeacherCourses" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByTeacherCourses" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByTeacherCourses">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT        Teachers.IdTeacher, Teachers.FullName, Courses.IdCourse, Courses.CoursetTitle
+FROM            Teachers INNER JOIN
+                         Courses ON Teachers.IdTeacher = Courses.IdTeacher</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TeacherLearnOnTableAdapter" GeneratorDataComponentClassName="TeacherLearnOnTableAdapter" Name="TeacherLearnOn" UserDataComponentName="TeacherLearnOnTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Teachers.IdTeacher, Teachers.FullName, ListOfStudying.IdCourse, Courses.CoursetTitle
+FROM            Teachers INNER JOIN
+                         ListOfStudying ON Teachers.IdTeacher = ListOfStudying.IdTeacher INNER JOIN
+                         Courses ON Teachers.IdTeacher = Courses.IdTeacher</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdTeacher" DataSetColumn="IdTeacher" />
+              <Mapping SourceColumn="FullName" DataSetColumn="FullName" />
+              <Mapping SourceColumn="IdCourse" DataSetColumn="IdCourse" />
+              <Mapping SourceColumn="CoursetTitle" DataSetColumn="CoursetTitle" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByZapovn" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByZapovn" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByZapovn">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT        Teachers.IdTeacher, Teachers.FullName, ListOfStudying.IdCourse, Courses.CoursetTitle
+FROM            Teachers INNER JOIN
+                         ListOfStudying ON Teachers.IdTeacher = ListOfStudying.IdTeacher INNER JOIN
+                         Courses ON Teachers.IdTeacher = Courses.IdTeacher</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="MyNewDataBase (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="SearchingTC" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="SearchingTC" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="SearchingTC">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT        Teachers.IdTeacher, Teachers.FullName, ListOfStudying.IdCourse, Courses.CoursetTitle
+FROM            Teachers INNER JOIN
+                         ListOfStudying ON Teachers.IdTeacher = ListOfStudying.IdTeacher INNER JOIN
+                         Courses ON Teachers.IdTeacher = Courses.IdTeacher
+WHERE        (Teachers.IdTeacher LIKE :IdTeacher) OR
+                         (Teachers.FullName LIKE :FullName) OR
+                         (ListOfStudying.IdCourse LIKE :IdCourse) OR
+                         (Courses.CoursetTitle LIKE :CoursetTitle)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="IdTeacher" ColumnName="IdTeacher" DataSourceName="&quot;main&quot;.Teachers" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="IdTeacher" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="IdTeacher" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="FullName" ColumnName="FullName" DataSourceName="&quot;main&quot;.Teachers" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="FullName" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="FullName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="IdCourse" ColumnName="IdCourse" DataSourceName="&quot;main&quot;.ListOfStudying" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="IdCourse" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="IdCourse" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CoursetTitle" ColumnName="CoursetTitle" DataSourceName="&quot;main&quot;.Courses" DataTypeServer="TEXT" DbType="String" Direction="Input" ParameterName="CoursetTitle" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="CoursetTitle" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
         </Tables>
         <Sources />
@@ -592,7 +735,7 @@ FROM            Students INNER JOIN
   <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Courses" msprop:Generator_TableClassName="CoursesDataTable" msprop:Generator_TableVarName="tableCourses" msprop:Generator_RowChangedName="CoursesRowChanged" msprop:Generator_TablePropName="Courses" msprop:Generator_RowDeletingName="CoursesRowDeleting" msprop:Generator_RowChangingName="CoursesRowChanging" msprop:Generator_RowEvHandlerName="CoursesRowChangeEventHandler" msprop:Generator_RowDeletedName="CoursesRowDeleted" msprop:Generator_RowClassName="CoursesRow" msprop:Generator_UserTableName="Courses" msprop:Generator_RowEvArgName="CoursesRowChangeEvent">
+        <xs:element name="Courses" msprop:Generator_TableClassName="CoursesDataTable" msprop:Generator_TableVarName="tableCourses" msprop:Generator_TablePropName="Courses" msprop:Generator_RowDeletingName="CoursesRowDeleting" msprop:Generator_RowChangingName="CoursesRowChanging" msprop:Generator_RowEvHandlerName="CoursesRowChangeEventHandler" msprop:Generator_RowDeletedName="CoursesRowDeleted" msprop:Generator_UserTableName="Courses" msprop:Generator_RowChangedName="CoursesRowChanged" msprop:Generator_RowEvArgName="CoursesRowChangeEvent" msprop:Generator_RowClassName="CoursesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdCourse" msprop:Generator_ColumnVarNameInTable="columnIdCourse" msprop:Generator_ColumnPropNameInRow="IdCourse" msprop:Generator_ColumnPropNameInTable="IdCourseColumn" msprop:Generator_UserColumnName="IdCourse" type="xs:string" />
@@ -605,7 +748,7 @@ FROM            Students INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="sqlite_sequence" msprop:Generator_TableClassName="sqlite_sequenceDataTable" msprop:Generator_TableVarName="tablesqlite_sequence" msprop:Generator_RowChangedName="sqlite_sequenceRowChanged" msprop:Generator_TablePropName="sqlite_sequence" msprop:Generator_RowDeletingName="sqlite_sequenceRowDeleting" msprop:Generator_RowChangingName="sqlite_sequenceRowChanging" msprop:Generator_RowEvHandlerName="sqlite_sequenceRowChangeEventHandler" msprop:Generator_RowDeletedName="sqlite_sequenceRowDeleted" msprop:Generator_RowClassName="sqlite_sequenceRow" msprop:Generator_UserTableName="sqlite_sequence" msprop:Generator_RowEvArgName="sqlite_sequenceRowChangeEvent">
+        <xs:element name="sqlite_sequence" msprop:Generator_TableClassName="sqlite_sequenceDataTable" msprop:Generator_TableVarName="tablesqlite_sequence" msprop:Generator_TablePropName="sqlite_sequence" msprop:Generator_RowDeletingName="sqlite_sequenceRowDeleting" msprop:Generator_RowChangingName="sqlite_sequenceRowChanging" msprop:Generator_RowEvHandlerName="sqlite_sequenceRowChangeEventHandler" msprop:Generator_RowDeletedName="sqlite_sequenceRowDeleted" msprop:Generator_UserTableName="sqlite_sequence" msprop:Generator_RowChangedName="sqlite_sequenceRowChanged" msprop:Generator_RowEvArgName="sqlite_sequenceRowChangeEvent" msprop:Generator_RowClassName="sqlite_sequenceRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" type="xs:string" minOccurs="0" />
@@ -613,7 +756,7 @@ FROM            Students INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Students" msprop:Generator_TableClassName="StudentsDataTable" msprop:Generator_TableVarName="tableStudents" msprop:Generator_RowChangedName="StudentsRowChanged" msprop:Generator_TablePropName="Students" msprop:Generator_RowDeletingName="StudentsRowDeleting" msprop:Generator_RowChangingName="StudentsRowChanging" msprop:Generator_RowEvHandlerName="StudentsRowChangeEventHandler" msprop:Generator_RowDeletedName="StudentsRowDeleted" msprop:Generator_RowClassName="StudentsRow" msprop:Generator_UserTableName="Students" msprop:Generator_RowEvArgName="StudentsRowChangeEvent">
+        <xs:element name="Students" msprop:Generator_TableClassName="StudentsDataTable" msprop:Generator_TableVarName="tableStudents" msprop:Generator_TablePropName="Students" msprop:Generator_RowDeletingName="StudentsRowDeleting" msprop:Generator_RowChangingName="StudentsRowChanging" msprop:Generator_RowEvHandlerName="StudentsRowChangeEventHandler" msprop:Generator_RowDeletedName="StudentsRowDeleted" msprop:Generator_UserTableName="Students" msprop:Generator_RowChangedName="StudentsRowChanged" msprop:Generator_RowEvArgName="StudentsRowChangeEvent" msprop:Generator_RowClassName="StudentsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdStudent" msprop:Generator_ColumnVarNameInTable="columnIdStudent" msprop:Generator_ColumnPropNameInRow="IdStudent" msprop:Generator_ColumnPropNameInTable="IdStudentColumn" msprop:Generator_UserColumnName="IdStudent" type="xs:string" />
@@ -624,7 +767,7 @@ FROM            Students INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Teachers" msprop:Generator_TableClassName="TeachersDataTable" msprop:Generator_TableVarName="tableTeachers" msprop:Generator_RowChangedName="TeachersRowChanged" msprop:Generator_TablePropName="Teachers" msprop:Generator_RowDeletingName="TeachersRowDeleting" msprop:Generator_RowChangingName="TeachersRowChanging" msprop:Generator_RowEvHandlerName="TeachersRowChangeEventHandler" msprop:Generator_RowDeletedName="TeachersRowDeleted" msprop:Generator_RowClassName="TeachersRow" msprop:Generator_UserTableName="Teachers" msprop:Generator_RowEvArgName="TeachersRowChangeEvent">
+        <xs:element name="Teachers" msprop:Generator_TableClassName="TeachersDataTable" msprop:Generator_TableVarName="tableTeachers" msprop:Generator_TablePropName="Teachers" msprop:Generator_RowDeletingName="TeachersRowDeleting" msprop:Generator_RowChangingName="TeachersRowChanging" msprop:Generator_RowEvHandlerName="TeachersRowChangeEventHandler" msprop:Generator_RowDeletedName="TeachersRowDeleted" msprop:Generator_UserTableName="Teachers" msprop:Generator_RowChangedName="TeachersRowChanged" msprop:Generator_RowEvArgName="TeachersRowChangeEvent" msprop:Generator_RowClassName="TeachersRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdTeacher" msprop:Generator_ColumnVarNameInTable="columnIdTeacher" msprop:Generator_ColumnPropNameInRow="IdTeacher" msprop:Generator_ColumnPropNameInTable="IdTeacherColumn" msprop:Generator_UserColumnName="IdTeacher" type="xs:string" />
@@ -636,7 +779,7 @@ FROM            Students INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CoursesShort" msprop:Generator_TableClassName="CoursesShortDataTable" msprop:Generator_TableVarName="tableCoursesShort" msprop:Generator_TablePropName="CoursesShort" msprop:Generator_RowDeletingName="CoursesShortRowDeleting" msprop:Generator_RowChangingName="CoursesShortRowChanging" msprop:Generator_RowEvHandlerName="CoursesShortRowChangeEventHandler" msprop:Generator_RowDeletedName="CoursesShortRowDeleted" msprop:Generator_UserTableName="CoursesShort" msprop:Generator_RowChangedName="CoursesShortRowChanged" msprop:Generator_RowEvArgName="CoursesShortRowChangeEvent" msprop:Generator_RowClassName="CoursesShortRow">
+        <xs:element name="CoursesShort" msprop:Generator_TableClassName="CoursesShortDataTable" msprop:Generator_TableVarName="tableCoursesShort" msprop:Generator_RowChangedName="CoursesShortRowChanged" msprop:Generator_TablePropName="CoursesShort" msprop:Generator_RowDeletingName="CoursesShortRowDeleting" msprop:Generator_RowChangingName="CoursesShortRowChanging" msprop:Generator_RowEvHandlerName="CoursesShortRowChangeEventHandler" msprop:Generator_RowDeletedName="CoursesShortRowDeleted" msprop:Generator_RowClassName="CoursesShortRow" msprop:Generator_UserTableName="CoursesShort" msprop:Generator_RowEvArgName="CoursesShortRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdCourse" msprop:Generator_ColumnVarNameInTable="columnIdCourse" msprop:Generator_ColumnPropNameInRow="IdCourse" msprop:Generator_ColumnPropNameInTable="IdCourseColumn" msprop:Generator_UserColumnName="IdCourse" type="xs:string" />
@@ -646,7 +789,7 @@ FROM            Students INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="StudentsShort" msprop:Generator_TableClassName="StudentsShortDataTable" msprop:Generator_TableVarName="tableStudentsShort" msprop:Generator_TablePropName="StudentsShort" msprop:Generator_RowDeletingName="StudentsShortRowDeleting" msprop:Generator_RowChangingName="StudentsShortRowChanging" msprop:Generator_RowEvHandlerName="StudentsShortRowChangeEventHandler" msprop:Generator_RowDeletedName="StudentsShortRowDeleted" msprop:Generator_UserTableName="StudentsShort" msprop:Generator_RowChangedName="StudentsShortRowChanged" msprop:Generator_RowEvArgName="StudentsShortRowChangeEvent" msprop:Generator_RowClassName="StudentsShortRow">
+        <xs:element name="StudentsShort" msprop:Generator_TableClassName="StudentsShortDataTable" msprop:Generator_TableVarName="tableStudentsShort" msprop:Generator_RowChangedName="StudentsShortRowChanged" msprop:Generator_TablePropName="StudentsShort" msprop:Generator_RowDeletingName="StudentsShortRowDeleting" msprop:Generator_RowChangingName="StudentsShortRowChanging" msprop:Generator_RowEvHandlerName="StudentsShortRowChangeEventHandler" msprop:Generator_RowDeletedName="StudentsShortRowDeleted" msprop:Generator_RowClassName="StudentsShortRow" msprop:Generator_UserTableName="StudentsShort" msprop:Generator_RowEvArgName="StudentsShortRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdStudent" msprop:Generator_ColumnVarNameInTable="columnIdStudent" msprop:Generator_ColumnPropNameInRow="IdStudent" msprop:Generator_ColumnPropNameInTable="IdStudentColumn" msprop:Generator_UserColumnName="IdStudent" type="xs:string" />
@@ -657,7 +800,7 @@ FROM            Students INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TeachShort" msprop:Generator_TableClassName="TeachShortDataTable" msprop:Generator_TableVarName="tableTeachShort" msprop:Generator_TablePropName="TeachShort" msprop:Generator_RowDeletingName="TeachShortRowDeleting" msprop:Generator_RowChangingName="TeachShortRowChanging" msprop:Generator_RowEvHandlerName="TeachShortRowChangeEventHandler" msprop:Generator_RowDeletedName="TeachShortRowDeleted" msprop:Generator_UserTableName="TeachShort" msprop:Generator_RowChangedName="TeachShortRowChanged" msprop:Generator_RowEvArgName="TeachShortRowChangeEvent" msprop:Generator_RowClassName="TeachShortRow">
+        <xs:element name="TeachShort" msprop:Generator_TableClassName="TeachShortDataTable" msprop:Generator_TableVarName="tableTeachShort" msprop:Generator_RowChangedName="TeachShortRowChanged" msprop:Generator_TablePropName="TeachShort" msprop:Generator_RowDeletingName="TeachShortRowDeleting" msprop:Generator_RowChangingName="TeachShortRowChanging" msprop:Generator_RowEvHandlerName="TeachShortRowChangeEventHandler" msprop:Generator_RowDeletedName="TeachShortRowDeleted" msprop:Generator_RowClassName="TeachShortRow" msprop:Generator_UserTableName="TeachShort" msprop:Generator_RowEvArgName="TeachShortRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FullName" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" msprop:Generator_UserColumnName="FullName" type="xs:string" minOccurs="0" />
@@ -668,7 +811,7 @@ FROM            Students INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ListOfStudying" msprop:Generator_TableClassName="ListOfStudyingDataTable" msprop:Generator_TableVarName="tableListOfStudying" msprop:Generator_TablePropName="ListOfStudying" msprop:Generator_RowDeletingName="ListOfStudyingRowDeleting" msprop:Generator_RowChangingName="ListOfStudyingRowChanging" msprop:Generator_RowEvHandlerName="ListOfStudyingRowChangeEventHandler" msprop:Generator_RowDeletedName="ListOfStudyingRowDeleted" msprop:Generator_UserTableName="ListOfStudying" msprop:Generator_RowChangedName="ListOfStudyingRowChanged" msprop:Generator_RowEvArgName="ListOfStudyingRowChangeEvent" msprop:Generator_RowClassName="ListOfStudyingRow">
+        <xs:element name="ListOfStudying" msprop:Generator_TableClassName="ListOfStudyingDataTable" msprop:Generator_TableVarName="tableListOfStudying" msprop:Generator_RowChangedName="ListOfStudyingRowChanged" msprop:Generator_TablePropName="ListOfStudying" msprop:Generator_RowDeletingName="ListOfStudyingRowDeleting" msprop:Generator_RowChangingName="ListOfStudyingRowChanging" msprop:Generator_RowEvHandlerName="ListOfStudyingRowChangeEventHandler" msprop:Generator_RowDeletedName="ListOfStudyingRowDeleted" msprop:Generator_RowClassName="ListOfStudyingRow" msprop:Generator_UserTableName="ListOfStudying" msprop:Generator_RowEvArgName="ListOfStudyingRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Idlist" msprop:Generator_ColumnVarNameInTable="columnIdlist" msprop:Generator_ColumnPropNameInRow="Idlist" msprop:Generator_ColumnPropNameInTable="IdlistColumn" msprop:Generator_UserColumnName="Idlist" type="xs:string" />
@@ -678,7 +821,7 @@ FROM            Students INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="StudQueryButton" msprop:Generator_TableClassName="StudQueryButtonDataTable" msprop:Generator_TableVarName="tableStudQueryButton" msprop:Generator_TablePropName="StudQueryButton" msprop:Generator_RowDeletingName="StudQueryButtonRowDeleting" msprop:Generator_RowChangingName="StudQueryButtonRowChanging" msprop:Generator_RowEvHandlerName="StudQueryButtonRowChangeEventHandler" msprop:Generator_RowDeletedName="StudQueryButtonRowDeleted" msprop:Generator_UserTableName="StudQueryButton" msprop:Generator_RowChangedName="StudQueryButtonRowChanged" msprop:Generator_RowEvArgName="StudQueryButtonRowChangeEvent" msprop:Generator_RowClassName="StudQueryButtonRow">
+        <xs:element name="StudQueryButton" msprop:Generator_TableClassName="StudQueryButtonDataTable" msprop:Generator_TableVarName="tableStudQueryButton" msprop:Generator_RowChangedName="StudQueryButtonRowChanged" msprop:Generator_TablePropName="StudQueryButton" msprop:Generator_RowDeletingName="StudQueryButtonRowDeleting" msprop:Generator_RowChangingName="StudQueryButtonRowChanging" msprop:Generator_RowEvHandlerName="StudQueryButtonRowChangeEventHandler" msprop:Generator_RowDeletedName="StudQueryButtonRowDeleted" msprop:Generator_RowClassName="StudQueryButtonRow" msprop:Generator_UserTableName="StudQueryButton" msprop:Generator_RowEvArgName="StudQueryButtonRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdStudent" msprop:Generator_ColumnVarNameInTable="columnIdStudent" msprop:Generator_ColumnPropNameInRow="IdStudent" msprop:Generator_ColumnPropNameInTable="IdStudentColumn" msprop:Generator_UserColumnName="IdStudent" type="xs:string" />
@@ -690,6 +833,26 @@ FROM            Students INNER JOIN
               <xs:element name="IdCourse" msprop:Generator_ColumnVarNameInTable="columnIdCourse" msprop:Generator_ColumnPropNameInRow="IdCourse" msprop:Generator_ColumnPropNameInTable="IdCourseColumn" msprop:Generator_UserColumnName="IdCourse" type="xs:string" />
               <xs:element name="CoursetTitle" msprop:Generator_ColumnVarNameInTable="columnCoursetTitle" msprop:Generator_ColumnPropNameInRow="CoursetTitle" msprop:Generator_ColumnPropNameInTable="CoursetTitleColumn" msprop:Generator_UserColumnName="CoursetTitle" type="xs:string" minOccurs="0" />
               <xs:element name="IdTeacher" msprop:Generator_ColumnVarNameInTable="columnIdTeacher" msprop:Generator_ColumnPropNameInRow="IdTeacher" msprop:Generator_ColumnPropNameInTable="IdTeacherColumn" msprop:Generator_UserColumnName="IdTeacher" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TeachCourse" msprop:Generator_TableClassName="TeachCourseDataTable" msprop:Generator_TableVarName="tableTeachCourse" msprop:Generator_TablePropName="TeachCourse" msprop:Generator_RowDeletingName="TeachCourseRowDeleting" msprop:Generator_RowChangingName="TeachCourseRowChanging" msprop:Generator_RowEvHandlerName="TeachCourseRowChangeEventHandler" msprop:Generator_RowDeletedName="TeachCourseRowDeleted" msprop:Generator_UserTableName="TeachCourse" msprop:Generator_RowChangedName="TeachCourseRowChanged" msprop:Generator_RowEvArgName="TeachCourseRowChangeEvent" msprop:Generator_RowClassName="TeachCourseRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdTeacher" msprop:Generator_ColumnVarNameInTable="columnIdTeacher" msprop:Generator_ColumnPropNameInRow="IdTeacher" msprop:Generator_ColumnPropNameInTable="IdTeacherColumn" msprop:Generator_UserColumnName="IdTeacher" type="xs:string" />
+              <xs:element name="FullName" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" msprop:Generator_UserColumnName="FullName" type="xs:string" minOccurs="0" />
+              <xs:element name="IdCourse" msprop:Generator_ColumnVarNameInTable="columnIdCourse" msprop:Generator_ColumnPropNameInRow="IdCourse" msprop:Generator_ColumnPropNameInTable="IdCourseColumn" msprop:Generator_UserColumnName="IdCourse" type="xs:string" />
+              <xs:element name="CoursetTitle" msprop:Generator_ColumnVarNameInTable="columnCoursetTitle" msprop:Generator_ColumnPropNameInRow="CoursetTitle" msprop:Generator_ColumnPropNameInTable="CoursetTitleColumn" msprop:Generator_UserColumnName="CoursetTitle" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TeacherLearnOn" msprop:Generator_TableClassName="TeacherLearnOnDataTable" msprop:Generator_TableVarName="tableTeacherLearnOn" msprop:Generator_TablePropName="TeacherLearnOn" msprop:Generator_RowDeletingName="TeacherLearnOnRowDeleting" msprop:Generator_RowChangingName="TeacherLearnOnRowChanging" msprop:Generator_RowEvHandlerName="TeacherLearnOnRowChangeEventHandler" msprop:Generator_RowDeletedName="TeacherLearnOnRowDeleted" msprop:Generator_UserTableName="TeacherLearnOn" msprop:Generator_RowChangedName="TeacherLearnOnRowChanged" msprop:Generator_RowEvArgName="TeacherLearnOnRowChangeEvent" msprop:Generator_RowClassName="TeacherLearnOnRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdTeacher" msprop:Generator_ColumnVarNameInTable="columnIdTeacher" msprop:Generator_ColumnPropNameInRow="IdTeacher" msprop:Generator_ColumnPropNameInTable="IdTeacherColumn" msprop:Generator_UserColumnName="IdTeacher" type="xs:string" />
+              <xs:element name="FullName" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" msprop:Generator_UserColumnName="FullName" type="xs:string" minOccurs="0" />
+              <xs:element name="IdCourse" msprop:Generator_ColumnVarNameInTable="columnIdCourse" msprop:Generator_ColumnPropNameInRow="IdCourse" msprop:Generator_ColumnPropNameInTable="IdCourseColumn" msprop:Generator_UserColumnName="IdCourse" type="xs:string" />
+              <xs:element name="CoursetTitle" msprop:Generator_ColumnVarNameInTable="columnCoursetTitle" msprop:Generator_ColumnPropNameInRow="CoursetTitle" msprop:Generator_ColumnPropNameInTable="CoursetTitleColumn" msprop:Generator_UserColumnName="CoursetTitle" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -729,13 +892,22 @@ FROM            Students INNER JOIN
       <xs:field xpath="mstns:Idlist" />
       <xs:field xpath="mstns:IdTeacher" />
     </xs:unique>
+    <xs:unique name="TeachCourse_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TeachCourse" />
+      <xs:field xpath="mstns:IdTeacher" />
+      <xs:field xpath="mstns:IdCourse" />
+    </xs:unique>
+    <xs:unique name="TeacherLearnOn_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TeacherLearnOn" />
+      <xs:field xpath="mstns:IdTeacher" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="Teachers_Courses" msdata:parent="Teachers" msdata:child="Courses" msdata:parentkey="IdTeacher" msdata:childkey="IdTeacher" msprop:Generator_UserChildTable="Courses" msprop:Generator_ChildPropName="GetCoursesRows" msprop:Generator_UserRelationName="Teachers_Courses" msprop:Generator_ParentPropName="TeachersRow" msprop:Generator_RelationVarName="relationTeachers_Courses" msprop:Generator_UserParentTable="Teachers" />
-      <msdata:Relationship name="Courses_ListOfStudying" msdata:parent="Courses" msdata:child="ListOfStudying" msdata:parentkey="IdCourse" msdata:childkey="IdCourse" msprop:Generator_UserChildTable="ListOfStudying" msprop:Generator_ChildPropName="GetListOfStudyingRows" msprop:Generator_UserRelationName="Courses_ListOfStudying" msprop:Generator_ParentPropName="CoursesRow" msprop:Generator_RelationVarName="relationCourses_ListOfStudying" msprop:Generator_UserParentTable="Courses" />
-      <msdata:Relationship name="Students_ListOfStudying" msdata:parent="Students" msdata:child="ListOfStudying" msdata:parentkey="IdStudent" msdata:childkey="IdStudent" msprop:Generator_UserChildTable="ListOfStudying" msprop:Generator_ChildPropName="GetListOfStudyingRows" msprop:Generator_UserRelationName="Students_ListOfStudying" msprop:Generator_ParentPropName="StudentsRow" msprop:Generator_RelationVarName="relationStudents_ListOfStudying" msprop:Generator_UserParentTable="Students" />
-      <msdata:Relationship name="Teachers_ListOfStudying" msdata:parent="Teachers" msdata:child="ListOfStudying" msdata:parentkey="IdTeacher" msdata:childkey="IdTeacher" msprop:Generator_UserChildTable="ListOfStudying" msprop:Generator_ChildPropName="GetListOfStudyingRows" msprop:Generator_UserRelationName="Teachers_ListOfStudying" msprop:Generator_ParentPropName="TeachersRow" msprop:Generator_RelationVarName="relationTeachers_ListOfStudying" msprop:Generator_UserParentTable="Teachers" />
+      <msdata:Relationship name="Teachers_Courses" msdata:parent="Teachers" msdata:child="Courses" msdata:parentkey="IdTeacher" msdata:childkey="IdTeacher" msprop:Generator_UserChildTable="Courses" msprop:Generator_ChildPropName="GetCoursesRows" msprop:Generator_UserRelationName="Teachers_Courses" msprop:Generator_RelationVarName="relationTeachers_Courses" msprop:Generator_UserParentTable="Teachers" msprop:Generator_ParentPropName="TeachersRow" />
+      <msdata:Relationship name="Courses_ListOfStudying" msdata:parent="Courses" msdata:child="ListOfStudying" msdata:parentkey="IdCourse" msdata:childkey="IdCourse" msprop:Generator_UserChildTable="ListOfStudying" msprop:Generator_ChildPropName="GetListOfStudyingRows" msprop:Generator_UserRelationName="Courses_ListOfStudying" msprop:Generator_RelationVarName="relationCourses_ListOfStudying" msprop:Generator_UserParentTable="Courses" msprop:Generator_ParentPropName="CoursesRow" />
+      <msdata:Relationship name="Students_ListOfStudying" msdata:parent="Students" msdata:child="ListOfStudying" msdata:parentkey="IdStudent" msdata:childkey="IdStudent" msprop:Generator_UserChildTable="ListOfStudying" msprop:Generator_ChildPropName="GetListOfStudyingRows" msprop:Generator_UserRelationName="Students_ListOfStudying" msprop:Generator_RelationVarName="relationStudents_ListOfStudying" msprop:Generator_UserParentTable="Students" msprop:Generator_ParentPropName="StudentsRow" />
+      <msdata:Relationship name="Teachers_ListOfStudying" msdata:parent="Teachers" msdata:child="ListOfStudying" msdata:parentkey="IdTeacher" msdata:childkey="IdTeacher" msprop:Generator_UserChildTable="ListOfStudying" msprop:Generator_ChildPropName="GetListOfStudyingRows" msprop:Generator_UserRelationName="Teachers_ListOfStudying" msprop:Generator_RelationVarName="relationTeachers_ListOfStudying" msprop:Generator_UserParentTable="Teachers" msprop:Generator_ParentPropName="TeachersRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
