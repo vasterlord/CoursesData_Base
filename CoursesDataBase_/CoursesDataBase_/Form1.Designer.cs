@@ -212,7 +212,7 @@
             this.groupBox3.Size = new System.Drawing.Size(394, 67);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "&Sigh in";
+            this.groupBox3.Text = "&Sigh in:";
             // 
             // label1
             // 
