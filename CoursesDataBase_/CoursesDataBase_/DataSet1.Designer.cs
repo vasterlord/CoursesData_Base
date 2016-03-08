@@ -46,13 +46,13 @@ namespace CoursesDataBase_ {
         
         private TeacherLearnOnDataTable tableTeacherLearnOn;
         
-        private global::System.Data.DataRelation relationTeachers_Courses;
-        
         private global::System.Data.DataRelation relationCourses_ListOfStudying;
         
         private global::System.Data.DataRelation relationStudents_ListOfStudying;
         
         private global::System.Data.DataRelation relationTeachers_ListOfStudying;
+        
+        private global::System.Data.DataRelation relationTeachers_Courses;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -442,10 +442,10 @@ namespace CoursesDataBase_ {
                     this.tableTeacherLearnOn.InitVars();
                 }
             }
-            this.relationTeachers_Courses = this.Relations["Teachers_Courses"];
             this.relationCourses_ListOfStudying = this.Relations["Courses_ListOfStudying"];
             this.relationStudents_ListOfStudying = this.Relations["Students_ListOfStudying"];
             this.relationTeachers_ListOfStudying = this.Relations["Teachers_ListOfStudying"];
+            this.relationTeachers_Courses = this.Relations["Teachers_Courses"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -478,10 +478,6 @@ namespace CoursesDataBase_ {
             base.Tables.Add(this.tableTeachCourse);
             this.tableTeacherLearnOn = new TeacherLearnOnDataTable();
             base.Tables.Add(this.tableTeacherLearnOn);
-            this.relationTeachers_Courses = new global::System.Data.DataRelation("Teachers_Courses", new global::System.Data.DataColumn[] {
-                        this.tableTeachers.IdTeacherColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCourses.IdTeacherColumn}, false);
-            this.Relations.Add(this.relationTeachers_Courses);
             this.relationCourses_ListOfStudying = new global::System.Data.DataRelation("Courses_ListOfStudying", new global::System.Data.DataColumn[] {
                         this.tableCourses.IdCourseColumn}, new global::System.Data.DataColumn[] {
                         this.tableListOfStudying.IdCourseColumn}, false);
@@ -494,6 +490,10 @@ namespace CoursesDataBase_ {
                         this.tableTeachers.IdTeacherColumn}, new global::System.Data.DataColumn[] {
                         this.tableListOfStudying.IdTeacherColumn}, false);
             this.Relations.Add(this.relationTeachers_ListOfStudying);
+            this.relationTeachers_Courses = new global::System.Data.DataRelation("Teachers_Courses", new global::System.Data.DataColumn[] {
+                        this.tableTeachers.IdTeacherColumn}, new global::System.Data.DataColumn[] {
+                        this.tableCourses.IdTeacherColumn}, false);
+            this.Relations.Add(this.relationTeachers_Courses);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4642,23 +4642,23 @@ namespace CoursesDataBase_ {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CoursesRow[] GetCoursesRows() {
-                if ((this.Table.ChildRelations["Teachers_Courses"] == null)) {
-                    return new CoursesRow[0];
-                }
-                else {
-                    return ((CoursesRow[])(base.GetChildRows(this.Table.ChildRelations["Teachers_Courses"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ListOfStudyingRow[] GetListOfStudyingRows() {
                 if ((this.Table.ChildRelations["Teachers_ListOfStudying"] == null)) {
                     return new ListOfStudyingRow[0];
                 }
                 else {
                     return ((ListOfStudyingRow[])(base.GetChildRows(this.Table.ChildRelations["Teachers_ListOfStudying"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public CoursesRow[] GetCoursesRows() {
+                if ((this.Table.ChildRelations["Teachers_Courses"] == null)) {
+                    return new CoursesRow[0];
+                }
+                else {
+                    return ((CoursesRow[])(base.GetChildRows(this.Table.ChildRelations["Teachers_Courses"])));
                 }
             }
         }
